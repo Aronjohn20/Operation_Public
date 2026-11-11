@@ -1,11 +1,14 @@
 # Operations Platform 🚀
 
+[![Live Demo](https://img.shields.io/badge/Demo-Live%20on%20Vercel-success?style=for-the-badge&logo=vercel)](https://operationpublics.vercel.app/)
 [![Next.js](https://img.shields.io/badge/Next.js-14-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-CSS-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-purple?style=for-the-badge)](LICENSE)
 
 An all-in-one operational orchestration and event automation platform designed for **student technical societies, college clubs, and university chapters**.
+
+> 🌐 **Live Interactive Demo**: You can test the platform live in your browser without cloning or running commands on your laptop 👉 **[operationpublics.vercel.app](https://operationpublics.vercel.app/)**
 
 Instead of juggling separate spreadsheets, disconnected Google Forms, manual Word documents, and Canva templates, this platform streamlines the **entire event lifecycle** into a single dashboard: coordinator workload balancing, institutional permission letters, automated registration forms, attendance rosters, NBA/NAAC outcome feedback, and a visual Certificate Studio with batch ZIP exports.
 
@@ -38,7 +41,32 @@ Instead of juggling separate spreadsheets, disconnected Google Forms, manual Wor
 
 ---
 
-## 💻 Quick Start: Run Locally (Sandbox Mode)
+## 📸 Interface & Workflow Previews
+
+### 1. Operations KPI Dashboard
+Real-time chapter overview tracking active coordinators, senior vs. junior distribution, and recent event activities.
+![Operations Dashboard](docs/screenshots/dashboard_overview.png)
+
+### 2. Events Hub & Active Management Archive
+Spotlight containers with live statuses, assigned coordinator tags, and one-click access to approvals and workspaces.
+![Events Manager](docs/screenshots/events_manager.jpg)
+
+### 3. Event Workspace & Interactive Form Simulator
+Self-contained registration and feedback simulators with live attendance sync, QR codes, and Certificate Studio integration.
+![Event Workspace & Form Simulator](docs/screenshots/event_workspace_simulator.png)
+
+---
+
+## 🚀 Quick Start: Try the App
+
+### Option A: Test the Live Interactive Demo (Instant in Browser)
+No installation or cloning required! Navigate directly to:
+👉 **[https://operationpublics.vercel.app](https://operationpublics.vercel.app/)**  
+*(Test coordinator balancing, interactive registration/feedback forms, and the Certificate Studio directly on desktop or mobile).*
+
+---
+
+### Option B: Run Locally (Sandbox Mode)
 
 The repository runs out-of-the-box in **100% Client-Side Sandbox Mode**:
 * **No Database or API Keys Needed**: Everything runs locally inside your browser via `localStorage`.
@@ -122,6 +150,7 @@ If you wish to sync data to a real cloud PostgreSQL database instead of purely u
 ## 📂 Project Structure
 
 ```
+├── docs/screenshots/       # High-resolution interface previews for README
 ├── public/                 # Static assets, logos, and sample certificate templates
 │   └── logos/              # Sample institute and chapter emblems
 ├── scripts/                # Reusable Google Apps Script automation templates
