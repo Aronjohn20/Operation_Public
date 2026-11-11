@@ -70,12 +70,17 @@ If you want to deploy this system for your own university or tech chapter:
 
 3. **Connect Google Drive Webhook Automation (Optional)**:
    - Open [script.google.com](https://script.google.com) in your club's Google Workspace account.
-   - Deploy the provided Apps Script generators (found in `src/lib/formScriptGenerator.ts` and `src/lib/feedbackFormGenerator.ts`) as a Web App (Access: Anyone).
-   - Paste the deployment URLs into `.env.local`:
+   - The repository provides clean, reusable Google Apps Script templates in the `/scripts` directory:
+     - `scripts/google_apps_script_registration.js` (Standalone Registration Form & Sheet Generator)
+     - `scripts/csi_master_webhook.js` (Unified Master Webhook Hub for Registration, Feedback & Response Sync)
+   - In Google Apps Script, click **Deploy > New deployment > Select type: Web app**.
+   - Configure **Execute as: Me** and **Who has access: Anyone**.
+   - Copy your private Web App deployment URL and add it to your `.env.local`:
      ```env
-     NEXT_PUBLIC_CSI_GOOGLE_WEBHOOK_URL=https://script.google.com/macros/s/.../exec
-     NEXT_PUBLIC_CSI_FEEDBACK_WEBHOOK_URL=https://script.google.com/macros/s/.../exec
+     NEXT_PUBLIC_CSI_GOOGLE_WEBHOOK_URL=https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec
+     NEXT_PUBLIC_CSI_FEEDBACK_WEBHOOK_URL=https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec
      ```
+   *(Note: The repository code contains zero hardcoded API keys or webhook URLs. All live Google Workspace integration runs strictly via your own environment variables).*
 
 4. **Deploy with Vercel**:
    - Push your fork to GitHub and import it on [Vercel](https://vercel.com).
