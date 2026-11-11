@@ -1,179 +1,162 @@
-# CSI Operations Platform 🚀
+# Operations Platform 🚀
 
 [![Next.js](https://img.shields.io/badge/Next.js-14-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-CSS-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-purple?style=for-the-badge)](LICENSE)
 
-An enterprise-grade operational orchestration and event automation platform built for the **Computer Society of India (CSI) Student Branch**.
+An all-in-one operational orchestration and event automation platform designed for **student technical societies, college clubs, and university chapters**.
 
-CSI Operations integrates the **entire lifecycle of a technical student branch** into a single web application: from event container creation, workload-balanced coordinator allocation, and institutional letters, to 1-click Google Drive forms, live attendance mapping, NBA/NAAC outcome-based feedback surveys, and a visual Certificate Studio with vector superscript typography.
-
----
-
-## 🌟 Interactive Public Sandbox (Air-Gapped Demo Mode)
-
-This repository is configured to run in **100% Client-Side Sandbox Mode**:
-- **Zero Cloud Database Required**: Supabase connections are neutralized. All events, members, and rosters persist purely in your browser's `localStorage`.
-- **Zero External Webhooks**: Form creation and responses sync are simulated locally on your device without communicating with Google Drive.
-- **Pre-Loaded Sample Data**:
-  - **Planned Event Container**: *CodeStorm 2026 – State Hackathon* (ready for testing coordinator allocation and letter generation).
-  - **Ongoing Event Container**: *AI & Neural Agents Bootcamp* (pre-populated with **25 registered attendees** across various branches for testing attendance sheets).
-  - **Completed Flagship Container**: *Off the Script* (pre-populated with **20 feedback responses**, 1st/2nd/3rd place merit winners, and linked to the **Certificate Studio**).
-- **1-Click Reset**: Use the **"🔄 Reset Demo Data"** banner button anytime to restore fresh sample data.
+Instead of juggling separate spreadsheets, disconnected Google Forms, manual Word documents, and Canva templates, this platform streamlines the **entire event lifecycle** into a single dashboard: coordinator workload balancing, institutional permission letters, automated registration forms, attendance rosters, NBA/NAAC outcome feedback, and a visual Certificate Studio with batch ZIP exports.
 
 ---
 
-## 🚀 Quick Start: How to Fork & Run Locally
-
-### Option A: Run Instantly in Sandbox Mode (No Setup Required)
-
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/<your-username>/CSI_Operations.git
-   cd CSI_Operations
-   ```
-
-2. **Install dependencies**:
-   ```bash
-   npm install
-   ```
-
-3. **Start the local development server**:
-   ```bash
-   npm run dev
-   ```
-
-4. **Open in browser**:
-   Navigate to [http://localhost:3000](http://localhost:3000).  
-   *Everything runs immediately on your machine with full interactivity!*
-
----
-
-### Option B: Connect to Your Own College Club's Database & Google Drive
-
-If you want to deploy this system for your own university or tech chapter:
-
-1. **Create your `.env.local` configuration**:
-   ```bash
-   cp .env.example .env.local
-   ```
-
-2. **Connect Supabase PostgreSQL (Optional)**:
-   - Create a free project at [supabase.com](https://supabase.com).
-   - In Supabase SQL Editor, execute the migration scripts located in `/supabase`.
-   - Paste your project URL and Anon Key into `.env.local`:
-     ```env
-     NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
-     NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
-     ```
-
-3. **Connect Google Drive Webhook Automation (Optional)**:
-   - Open [script.google.com](https://script.google.com) in your club's Google Workspace account.
-   - The repository provides clean, reusable Google Apps Script templates in the `/scripts` directory:
-     - `scripts/google_apps_script_registration.js` (Standalone Registration Form & Sheet Generator)
-     - `scripts/csi_master_webhook.js` (Unified Master Webhook Hub for Registration, Feedback & Response Sync)
-   - In Google Apps Script, click **Deploy > New deployment > Select type: Web app**.
-   - Configure **Execute as: Me** and **Who has access: Anyone**.
-   - Copy your private Web App deployment URL and add it to your `.env.local`:
-     ```env
-     NEXT_PUBLIC_CSI_GOOGLE_WEBHOOK_URL=https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec
-     NEXT_PUBLIC_CSI_FEEDBACK_WEBHOOK_URL=https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec
-     ```
-   *(Note: The repository code contains zero hardcoded API keys or webhook URLs. All live Google Workspace integration runs strictly via your own environment variables).*
-
-4. **Deploy with Vercel**:
-   - Push your fork to GitHub and import it on [Vercel](https://vercel.com).
-   - Add your environment variables in Vercel project settings and click **Deploy**!
-
----
-
-## 💎 Key Architectural Systems
+## 🌟 Quick Overview: How the Platform Works
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
-│                        CSI OPERATIONS LIFECYCLE                        │
+│                      STUDENT CHAPTER EVENT LIFECYCLE                   │
 │                                                                        │
-│  Event Creation ➔ Workload Allocation ➔ Approvals (RSMS/Permission)    │
+│  1. Event Creation ➔ Workload Allocation ➔ Official Permission Letter  │
 │                           │                                            │
 │                           ▼                                            │
-│  Registration Form ➔ Attendance Sign-in ➔ Outcome Feedback (PO10/11)  │
+│  2. Registration Form ➔ Live Attendance Roster ➔ Word/PDF Sheets       │
 │                           │                                            │
 │                           ▼                                            │
-│  Merit Winner Selection ➔ Visual Certificate Studio ➔ Batch ZIP Export │
+│  3. Feedback Survey (PO10/11) ➔ Merit Winners ➔ Certificate Studio     │
+│                           │                                            │
+│                           ▼                                            │
+│  4. Custom PPTX / Vector Canvas ➔ Batch Dual-Folder ZIP Download       │
 └────────────────────────────────────────────────────────────────────────┘
 ```
 
-### 1. Coordinator Workload Balancing Engine
-- Distinguishes between **Old Coordinators** (Senior executive mentors) and **New Coordinators** (Junior leads gaining hands-on event leadership).
-- Tracks individual event counts (`events_coordinated_count`) in real time.
-- Displays visual indicators in the event wizard to prevent coordinator burnout and ensure equitable task distribution.
+1. **Create Events & Balance Workload**: Select event mode (Online/Offline), date, venue, and target departments. The allocation algorithm highlights senior mentors vs. junior coordinators to keep workloads balanced.
+2. **Generate Official Approvals**: Instantly exports formal **Principal Permission Letters** and **Campus Intranet (RSMS) Notices** in editable Word (`.docx`) and vector PDF formats.
+3. **Registration & Attendance**: Generate registration forms with a single click. Track check-ins live on event day and export formatted **Attendance Sign-in Sheets** with official emblems and faculty sign-off blocks.
+4. **Outcome-Based Feedback**: Collect feedback mapped directly to NBA/NAAC criteria (**PO10 - Communication** & **PO11 - Project Management**). Attendees verify their certificate name spelling upon submission.
+5. **Certificate Studio**: Upload your club's PowerPoint (`.pptx`) or image template, drag and position text fields visually on screen with live preview, and download organized ZIP archives with 1st/2nd/3rd place and participant certificates.
 
-### 2. Institutional Document Generator (`documentExport.ts`)
-- **Official Attendance Sign-In Sheets**: Automatically formats student tables, faculty sign-off blocks, and official institutional & CSI emblems (Exportable in **Word `.docx`** and **Vector `.pdf`**).
-- **Principal Permission Letters**: Generates formal institutional requests addressed to college leadership with date, venue, and faculty coordinator endorsements.
-- **RSMS Student Intranet Notices**: Formats announcements ready for student portals.
+---
 
-### 3. Dual-Webhook Google Drive Automation
-- **Registration Pipeline**: Automatically deploys a branded Google Form with department choices and connects it to a live Google Sheet without email login barriers.
-- **Outcome-Based Feedback Pipeline**: Generates an accredited 2-page survey:
-  - **Page 1**: 8 mandatory verification fields (Name as required in certificate, UID, Email, Gender, Year, Branch, Section, WhatsApp No).
-  - **Page 2**: Evaluates criteria mapped directly to **PO10 (Communication)** and **PO11 (Project Management)**.
-- **Auditorium Projector Display**: Generates high-definition on-screen QR codes for live projection during event conclusions.
+## 💻 Quick Start: Run Locally (Sandbox Mode)
 
-### 4. Dedicated Visual Certificate Studio (`/certificates/pdf`)
-- **Interactive Drag & Slider Canvas**: Real-time visual manipulation of text coordinates (X %, Y %, Font Size, Alignment, Color) for Name, Details, Date/Venue, and Faculty Signatures.
-- **Superscript Ordinal Typography Engine**: Automatically parses merit positions (`1st`, `2nd`, `3rd`, `10th`, `21st`) and renders clean vector superscript typography (`1ˢᵗ`, `2ⁿᵈ`, `3ʳᵈ`) in jsPDF by dynamically scaling character heights (0.55x) and elevating the vertical baseline.
-- **Dynamic Write-Up Interpolation**: Supports dynamic placeholders `{name}`, `{position}`, `{event_name}`, `{date}`, `{venue}` with instant live preview.
-- **Batch Dual-Folder ZIP Export**: Pure client-side packaging via `JSZip` delivering two organized folders:
-  - `Winners_Appreciation_Certificates/` (1st, 2nd, 3rd place PDFs)
-  - `Participation_Certificates/` (Individual verified attendee PDFs)
+The repository runs out-of-the-box in **100% Client-Side Sandbox Mode**:
+* **No Database or API Keys Needed**: Everything runs locally inside your browser via `localStorage`.
+* **Zero External Calls**: Google Drive operations and forms are simulated safely in-app.
+* **Pre-Loaded Sample Data**: Comes with 3 ready-to-test containers:
+  * 📋 **Planned**: *CodeStorm 2026* (test coordinator assignment & letter generation).
+  * 🟢 **Ongoing**: *AI & Neural Agents Bootcamp* (with 25 sample registered attendees for attendance rosters).
+  * 🏆 **Completed**: *Off the Script* (with 20 feedback responses, merit winners, and certificate generator).
+* **1-Click Reset**: Click the **"🔄 Reset Demo Data"** banner button anytime to restore fresh sample data.
+
+### Running the App:
+```bash
+# 1. Clone the repository
+git clone https://github.com/Aronjohn20/Operation_Public.git
+cd Operation_Public
+
+# 2. Install dependencies
+npm install
+
+# 3. Start the development server
+npm run dev
+```
+Open **[http://localhost:3000](http://localhost:3000)** in your browser.
+
+---
+
+## 🎨 Customizing the Platform for Your Club
+
+This project is built to be easily adapted to any college club or student organization.
+
+### 1. Customizing Club Structure & Members
+* **Member Roster & Roles**: Edit [`src/lib/data.ts`](src/lib/data.ts) to define your club's executive domains (Technical, Operations, Creative, Marketing) and member tiers (`old_coordinator` for seniors, `new_coordinator` for juniors).
+* **Departments & Branches**: Change the target academic branches (e.g., `CSE`, `ECE`, `IT`, `ME`, `AIDS`) in [`src/lib/types.ts`](src/lib/types.ts) and [`src/lib/formScriptGenerator.ts`](src/lib/formScriptGenerator.ts).
+* **Club Logos & Branding**: Replace sample emblems in `public/logos/` with your own chapter's high-resolution emblems, or edit [`src/lib/logosBase64.ts`](src/lib/logosBase64.ts).
+
+### 2. Customizing Certificates (Upload PPTX or Edit Code)
+* **Visual In-App Customization**: Open **Certificate Studio** (`/events/[id]/certificates`) and upload your own **PowerPoint template (`.pptx`)** or background image. Use the interactive sliders and canvas to visually align names, dates, and signature lines.
+* **Code-Level Customization**: If you prefer custom layout logic or default typography, modify [`src/lib/certificateExport.ts`](src/lib/certificateExport.ts). The engine includes:
+  * Automatic **superscript ordinals** ($1^{st}$, $2^{nd}$, $3^{rd}$) for merit awards.
+  * Multi-font paragraph wrapping.
+  * Automated batch generation into `Winners_Appreciation_Certificates/` and `Participation_Certificates/` folders via JSZip.
+
+---
+
+## ☁️ Google Workspace Automation (Optional Setup)
+
+In addition to the in-app interactive simulation, this project includes production-ready **Google Apps Script** automation scripts in the [`scripts/`](scripts/) folder.
+
+### What the Scripts Do:
+* **[`scripts/google_apps_script_registration.js`](scripts/google_apps_script_registration.js)**: A standalone script that uses Google's `FormApp` and `SpreadsheetApp` APIs to build a registration form with your event's exact department options and connect it to a Google Sheet in seconds.
+* **[`scripts/csi_master_webhook.js`](scripts/csi_master_webhook.js)**: A unified master webhook hub that handles both Registration and Feedback surveys, syncs responses back to your web app, and manages form status.
+
+### How to Hook Up Live Google Drive Automation:
+1. Open [script.google.com](https://script.google.com) in your club's Google account and create a new project.
+2. Copy and paste the code from [`scripts/csi_master_webhook.js`](scripts/csi_master_webhook.js) into the editor.
+3. Click **Deploy > New deployment > Web app**:
+   * **Execute as**: *Me*
+   * **Who has access**: *Anyone*
+4. Copy the generated Web App URL and add it to your `.env.local`:
+   ```env
+   NEXT_PUBLIC_CSI_GOOGLE_WEBHOOK_URL=https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec
+   NEXT_PUBLIC_CSI_FEEDBACK_WEBHOOK_URL=https://script.google.com/macros/s/YOUR_FEEDBACK_WEBHOOK_ID/exec
+   ```
+*(Note: The codebase contains zero hardcoded API keys or webhook URLs. Live automation runs strictly through your own environment variables).*
+
+---
+
+## 🗄️ Database Setup (Optional Supabase Backend)
+
+If you wish to sync data to a real cloud PostgreSQL database instead of purely using `localStorage`:
+1. Create a free project at [supabase.com](https://supabase.com).
+2. Run the SQL migration scripts in order from the [`supabase/`](supabase/) directory:
+   * `01_schema.sql` (Tables for events, members, coordinator assignments)
+   * `02_seed_members.sql` (Sample roster)
+   * `03_seed_events.sql` (Sample event containers)
+   * `04_rls_policies.sql` & `05_triggers.sql`
+3. In [`src/lib/supabaseClient.ts`](src/lib/supabaseClient.ts), enable the client with your credentials from `.env.local`.
 
 ---
 
 ## 📂 Project Structure
 
 ```
-├── public/                 # Static assets, institutional crests & template previews
-│   └── logos/              # Sample emblems and badges
+├── public/                 # Static assets, logos, and sample certificate templates
+│   └── logos/              # Sample institute and chapter emblems
+├── scripts/                # Reusable Google Apps Script automation templates
+│   ├── csi_master_webhook.js                 # Dual-pipeline master webhook hub
+│   └── google_apps_script_registration.js    # Standalone form & sheet generator
 ├── src/
 │   ├── app/                # Next.js 14 App Router
-│   │   ├── api/
-│   │   │   └── google-form/route.ts # Mock Google Drive API dispatcher
-│   │   ├── events/         # Event management hub & active containers
-│   │   │   ├── [id]/       # Dynamic single event container
-│   │   │   │   ├── certificates/
-│   │   │   │   │   ├── page.tsx     # Certificate Studio (Winner assignment)
-│   │   │   │   │   └── pdf/page.tsx # Visual Certificate Customizer Studio
-│   │   │   │   └── page.tsx         # Event Master Container (Forms, Attendance)
-│   │   │   └── page.tsx    # Events Archive with Filters & Search
-│   │   ├── members/page.tsx# Member Directory & Coordinator Workload Table
-│   │   ├── globals.css     # Tailwind styling & dark/light mode tokens
-│   │   ├── layout.tsx      # Root shell with anti-flash script & DemoBanner
-│   │   └── page.tsx        # Central Operations KPI Dashboard
-│   ├── components/         # Reusable React components
-│   │   ├── CreateEventModal.tsx # Multi-step event creation wizard
-│   │   ├── DemoBanner.tsx  # Sandbox mode indicator & Reset button
-│   │   ├── Navbar.tsx      # Fixed navigation sidebar with theme toggler
-│   │   └── ThemeContext.tsx# Light / Dark mode state manager
-│   └── lib/                # Pure business logic & document engines
-│       ├── certificateExport.ts     # Vector jsPDF & JSZip batch packaging
-│       ├── data.ts                  # Default sample members & event containers
-│       ├── documentExport.ts        # Word & PDF Attendance/Letter generator
-│       ├── eventsStorage.ts         # Hybrid LocalStorage sync engine
-│       ├── feedbackFormGenerator.ts # NBA/NAAC Outcome survey generator
-│       ├── formScriptGenerator.ts   # Google Apps Script code generators
-│       ├── supabaseClient.ts        # Neutralized client in sandbox mode
-│       └── types.ts                 # TypeScript domain interfaces
-├── supabase/               # SQL database migration files
+│   │   ├── api/google-form/route.ts          # Simulated sandbox API dispatcher
+│   │   ├── events/                           # Event Management Hub & Archive
+│   │   │   └── [id]/                         # Event Container (Forms, Attendance, Letters)
+│   │   │       └── certificates/page.tsx     # Certificate Studio & Winner Assignment
+│   │   ├── members/page.tsx                  # Member Directory & Workload Table
+│   │   ├── layout.tsx                        # Root layout with DemoBanner & theme tokens
+│   │   └── page.tsx                          # KPI Operations Dashboard
+│   ├── components/         # Modular UI Components
+│   │   ├── CreateEventModal.tsx              # Multi-step event creation wizard
+│   │   ├── DemoBanner.tsx                    # Sandbox mode indicator & Reset button
+│   │   ├── Navbar.tsx                        # Navigation sidebar with dark/light theme
+│   │   └── SimulatedFormModal.tsx            # In-app Google Form simulator
+│   └── lib/                # Core Business Logic & Document Engines
+│       ├── certificateExport.ts              # jsPDF vector engine & JSZip batch packager
+│       ├── data.ts                           # Default sample members & event containers
+│       ├── documentExport.ts                 # Word (.docx) & PDF Attendance / Letter generator
+│       ├── eventsStorage.ts                  # LocalStorage state engine & Supabase sync
+│       ├── feedbackFormGenerator.ts          # PO10/PO11 Outcome survey script builder
+│       └── formScriptGenerator.ts            # Dynamic Apps Script code generators
+├── supabase/               # PostgreSQL schema & migration scripts
 ├── .env.example            # Environment variables template
-├── next.config.mjs         # Next.js build configuration
-├── package.json            # Node.js dependencies
-└── tailwind.config.ts      # Custom theme color definitions
+├── LICENSE                 # MIT License file
+├── package.json            # Project dependencies & scripts
+└── tailwind.config.ts      # Custom theme color tokens
 ```
 
 ---
 
 ## 🛡️ License
 
-This project is licensed under the [MIT License](LICENSE) — feel free to fork, adapt, and deploy it for your student branch, college club, or tech organization!
+This project is licensed under the [MIT License](LICENSE) — you are free to fork, customize, and deploy it for your own student chapter, university club, or technical organization!
