@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import DemoBanner from "@/components/DemoBanner";
 import { ThemeProvider } from "@/components/ThemeContext";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -40,6 +41,7 @@ export default function RootLayout({
         <ThemeProvider>
           <Navbar />
           <main className="flex-1 ml-60 px-8 py-8 transition-colors duration-200">
+            <DemoBanner />
             {children}
           </main>
         </ThemeProvider>

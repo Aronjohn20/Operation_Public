@@ -549,3 +549,15 @@ export async function uploadGeneratedCertificatesToSupabase(
     return null;
   }
 }
+
+/**
+ * Resets the demo sandbox to initial default sample events and members.
+ * Clears visitor modifications and restores fresh demo data.
+ */
+export function resetDemoData(): void {
+  if (typeof window === "undefined") return;
+  localStorage.setItem(EVENTS_STORAGE_KEY, JSON.stringify(initialEvents));
+  localStorage.setItem(MEMBERS_STORAGE_KEY, JSON.stringify(initialMembers));
+  window.dispatchEvent(new CustomEvent("csi_events_updated", { detail: initialEvents }));
+  window.dispatchEvent(new CustomEvent("csi_members_updated", { detail: initialMembers }));
+}

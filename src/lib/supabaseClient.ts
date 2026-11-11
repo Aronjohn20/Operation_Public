@@ -1,10 +1,12 @@
-import { createClient } from "@supabase/supabase-js";
+import { SupabaseClient } from "@supabase/supabase-js";
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
+// ============================================================================
+// CSI Operations - Database Client (Neutralized for Public Demo)
+// ============================================================================
+// In Public Demo Sandbox mode, external Supabase connections are neutralized.
+// All events, members, attendance rosters, and certificate templates run
+// 100% locally inside each visitor's browser localStorage without touching
+// any external cloud database.
+// ============================================================================
 
-export const supabase =
-  supabaseUrl && supabaseAnonKey
-    ? createClient(supabaseUrl, supabaseAnonKey)
-    : null;
-
+export const supabase: SupabaseClient | null = null;

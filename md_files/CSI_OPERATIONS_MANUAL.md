@@ -85,8 +85,10 @@ R:\VSCODE\CSI_Operations
 │   │   │   └── google-form/route.ts   # Webhook router for Google Apps Script
 │   │   ├── events/         # Events Archive & Event Container
 │   │   │   ├── [id]/       # Dynamic single event container
-│   │   │   │   ├── certificates/page.tsx # Dedicated Certificate Studio
-│   │   │   │   └── page.tsx              # Event Master Dashboard (Forms, Attendance)
+│   │   │   │   ├── certificates/
+│   │   │   │   │   ├── page.tsx      # Dedicated Certificate Studio (Winner assignment & uploads)
+│   │   │   │   │   └── pdf/page.tsx  # Advanced Visual Certificate Customizer & Vector PDF Studio
+│   │   │   │   └── page.tsx          # Event Master Dashboard (Forms, Attendance, Realtime status)
 │   │   │   └── page.tsx    # All Events Grid/Table with Search, Filter & KPIs
 │   │   ├── members/page.tsx# Member Directory (23 coordinators, roles, domains)
 │   │   ├── globals.css     # CSS variables, typography, light/dark mode overrides
@@ -174,11 +176,12 @@ Here is what happens step-by-step from the exact moment a user opens the website
 [src/app/api/google-form/route.ts]
        │
        ▼
-[Google Apps Script Master Webhook (script.google.com)]
+[Registration Webhook (NEXT_PUBLIC_CSI_GOOGLE_WEBHOOK_URL)]
        │
        ├──► FormApp.create() creates Registration Form in CSI Google Drive
-       │    └── Applies official CSI settings (No email limit, no progress bar, clean branding)
-       ├──► SpreadsheetApp.create() creates Destination Responses Google Sheet
+       │    └── Settings: No email harvest (collectEmail=false), unlimited responses (limitOne=false),
+       │                  no response edits (allowEdits=false), no progress bar
+       ├──► SpreadsheetApp.create() creates Destination Registrations Google Sheet
        ├──► Links Form responses to this Google Sheet
        │
        └──► Returns { formUrl, editUrl, sheetUrl, sheetId }
@@ -195,7 +198,7 @@ Here is what happens step-by-step from the exact moment a user opens the website
 [4. User clicks "Sync Final Roster to Attendance"]
        │
        ▼
-[Google Apps Script reads linked Google Sheet rows]
+[Registration Webhook reads linked Google Sheet rows]
        │
        ▼
 [mapGoogleFormResponsesToAttendance in formScriptGenerator.ts]
@@ -208,20 +211,24 @@ Here is what happens step-by-step from the exact moment a user opens the website
 
 ─────────────────────────────────────────────────────────────────────────────
 
-[5. Outcome-Based Feedback Form & QR Code]
+[5. Outcome-Based Feedback Form & Live Projection QR Code]
        │
        ▼
 [feedbackFormGenerator.ts]
        │
-       ├──► Generates dynamic questions mapped to NBA PO10 (Communication) & PO11 (Project Management)
-       ├──► Deploys Feedback Form & linked Feedback Sheet to Google Drive
-       ├──► Generates live on-screen downloadable QR code for auditorium projection
+       ├──► Polished introduction header description (without awkward fragments)
+       ├──► 2-Page Form Structure:
+       │    ├── Page 1: 8 Attendee Verification Profile Fields (Name, UID, Email, Gender, Year, Branch, Sec, Phone)
+       │    └── Page 2: Dynamic NBA PO10 (Communication) & PO11 (Project Management) Likert-scale questions
+       ├──► Deploys via Feedback Webhook (NEXT_PUBLIC_CSI_FEEDBACK_WEBHOOK_URL)
+       │    └── Settings: Limit 1 response per user (limitOneResponsePerUser=true), no email harvest, no edits
+       ├──► Generates live on-screen downloadable QR code & short links for auditorium projection
        │
-       └──► When participants submit, "Sync Feedback Responses" imports attendees into Certificate Pipeline
+       └──► When participants submit, "Sync Sheet Responses" imports attendees into Certificate Pipeline
 
 ─────────────────────────────────────────────────────────────────────────────
 
-[6. Dedicated Certificate Studio on /events/[id]/certificates]
+[6. Dedicated Certificate Studio on /events/[id]/certificates & /pdf]
        │
        ▼
 [Coordinator selects 1st, 2nd, 3rd Place Winners]
@@ -230,15 +237,16 @@ Here is what happens step-by-step from the exact moment a user opens the website
 [Coordinator uploads .pptx PowerPoint template (or image)]
        │
        ▼
-[certificateExport.ts]
+[Visual Certificate Customizer Studio (/events/[id]/certificates/pdf)]
        │
-       ├──► Uses JSZip to extract slide background from ppt/media/
-       ├──► Generates live interactive preview of certificate
+       ├──► Real-time interactive canvas with drag & slider coordinate positioning
+       ├──► Dynamic Write-up Template interpolation ({name}, {position}, {event_name}, {date}, {venue})
+       ├──► Automatic Superscript Ordinal Suffix Engine (1ˢᵗ, 2ⁿᵈ, 3ʳᵈ, 10ᵗʰ, 21ˢᵗ) in vector PDF typography
        │
-       └──► User clicks "Download Certificates (.ZIP)":
+       └──► User clicks "Download All Verified Certificates (ZIP)":
                  │
-                 ├──► Winners Folder: Injects names into PPTX XML + generates crisp PDFs
-                 ├──► Participation Folder: Generates certificates for all verified attendees
+                 ├──► Winners_Appreciation_Certificates/: 1st, 2nd, 3rd Place high-res vector PDFs
+                 ├──► Participation_Certificates/: Individual certificates for all verified attendees
                  └──► Browser delivers dual-folder .zip archive!
 ```
 
@@ -291,20 +299,19 @@ To ensure the app feels instantaneous and never shows a blank loading spinner, i
 
 ---
 
-### Stage 4: Google Drive Automation (`/api/google-form/route.ts`)
-1. In the event details page ([`src/app/events/[id]/page.tsx`](file:///r:/VSCODE/CSI_Operations/src/app/events/[id]/page.tsx)), clicking **"Create Form in Drive"** sends a POST request to `/api/google-form`.
-2. The route inspects `payload.action`:
-   * If action is registration-related (`create_form`, `toggle_registration`, `fetch_sheet_data`), it calls `NEXT_PUBLIC_CSI_GOOGLE_WEBHOOK_URL`.
-   * If action is feedback-related (`create_feedback_form`, `toggle_feedback`), it calls `NEXT_PUBLIC_CSI_FEEDBACK_WEBHOOK_URL`.
-3. The Google Apps Script executes inside the club's Google account:
-   * Calls `FormApp.create("Event Name Registration Form")`.
-   * Applies CSI brand settings: **collect emails is disabled**, **single-response limit disabled**, **allow edits disabled**, and **progress bar disabled**.
-   * Injects the 9 institutional RSET questions (Title, Name, Rajagiri Email, WhatsApp, Year, Department, Division, CSI Membership status, Membership ID).
-   * Calls `SpreadsheetApp.create("Event Name - Registrations (Responses)")`.
-   * Links the form to the spreadsheet using `form.setDestination(FormApp.DestinationType.SPREADSHEET, sheetId)`.
-4. The webhook returns the published form URL, edit URL, and spreadsheet URL.
-5. The Next.js app receives these URLs, updates `event.google_form_url` and `event.google_sheet_url`, and saves them to Supabase!
-6. Instantly, the UI reveals the **"Live Student Form"**, **"Edit in Forms"**, and **"Responses Sheet"** buttons!
+### Stage 4: Google Drive Automation & Dual-Webhook Architecture (`/api/google-form/route.ts`)
+1. In the event details page ([`src/app/events/[id]/page.tsx`](file:///r:/VSCODE/CSI_Operations/src/app/events/[id]/page.tsx)), Google Drive actions are routed through `/api/google-form`.
+2. **Dual-Webhook Isolation:**
+   * **Registration Webhook (`NEXT_PUBLIC_CSI_GOOGLE_WEBHOOK_URL`):**
+     * Handles `create_form`, `toggle_registration`, `fetch_sheet_data`.
+     * **CSI Institutional Settings:** `form.setCollectEmail(false)` (eliminates Google account sign-in barrier), `form.setLimitOneResponsePerUser(false)` (allows multiple students to register from shared college terminals), `form.setAllowResponseEdits(false)`, `form.setProgressBar(false)`.
+     * Injects the 9 institutional RSET questions (Title, Name, Rajagiri Email, WhatsApp, Year, Department, Division, CSI Membership status, Membership ID).
+     * Automatically provisions a linked Google Sheet: `"Event Name - Registrations (Responses)"`.
+   * **Feedback Webhook (`NEXT_PUBLIC_CSI_FEEDBACK_WEBHOOK_URL`):**
+     * Handles `create_feedback_form`, `toggle_feedback`, `fetch_feedback_sheet_data`.
+     * **CSI Audit Settings:** `form.setCollectEmail(false)`, `form.setLimitOneResponsePerUser(true)` (enforces one submission per student for genuine NBA/NAAC evaluation), `form.setAllowResponseEdits(false)`.
+     * Provisions a linked Google Sheet: `"Event Name - Feedback (Responses)"`.
+3. The Next.js app receives these URLs, updates `event.google_form_url`, `event.feedback_google_form_url`, and the linked sheet IDs, synchronizing them to Supabase and the local cache.
 
 ---
 
@@ -321,31 +328,45 @@ To ensure the app feels instantaneous and never shows a blank loading spinner, i
 
 ---
 
-### Stage 6: Outcome-Based Feedback Pipeline (`feedbackFormGenerator.ts`)
+### Stage 6: Outcome-Based Feedback Pipeline & State Resilience (`feedbackFormGenerator.ts`)
 1. Before event conclusion, the coordinator opens the Feedback section.
-2. The platform generates dynamic feedback questions compliant with NBA/NAAC criteria:
-   * **PO10 (Communication):** Quality of speaker delivery, presentation clarity.
-   * **PO11 (Project Management):** Timeliness, logistics, audio-visual arrangement.
-3. Clicking **"Create Feedback Form in Drive"** deploys the survey to Google Drive and generates an on-screen **downloadable QR code** (using `qrcode` canvas) that coordinators can project onto auditorium screens!
+2. **Polished Header Description (`getFeedbackHeaderDescription`):**
+   * Automatically formats a polite, professional invitation dynamically addressed to participants:
+     > *"Please take a moment to share your valuable feedback and ratings for [Event Name], organized by the Computer Society of India (CSI) Student Branch, RSET.*  
+     > *Thank you for participating – your feedback will help us improve and deliver even better events ahead!"*
+3. **2-Page Form Structure:**
+   * **Page 1: Attendee Profile Verification (8 Required Fields):**
+     1. Name (as required in certificate)
+     2. UID
+     3. UID Email
+     4. Gender (Mr / Mrs)
+     5. Year of Study
+     6. Branch (filtered to event target branches)
+     7. Section (Alpha, Beta, Gamma, Delta, Nil)
+     8. WhatsApp Number
+   * **Page 2: Event-Specific CO/PO Evaluation:**
+     * Dynamic Likert questions mapped directly to **PO10 (Communication)** and **PO11 (Project Management)**.
+4. **State Resilience & Anti-Flicker Architecture:**
+   * In `src/app/events/[id]/page.tsx`, local storage cache takes precedence upon creation completion.
+   * Event listeners read directly from local state rather than firing premature remote database reads, preventing the UI from bouncing between creation and live states during database writes.
+5. **Projector-Ready Projection:**
+   * Generates live on-screen downloadable QR code canvas (`qrcode`) and short links for instant projection on auditorium displays.
 
 ---
 
-### Stage 7: The Dedicated Certificate Studio (`certificates/page.tsx`, `certificateExport.ts`)
-1. **Attendee Loading:**
-   When student feedback responses sync, verified participants populate the Certificate Studio.
+### Stage 7: Dedicated Certificate Studio & Vector PDF Engine (`certificates/page.tsx`, `certificates/pdf/page.tsx`, `certificateExport.ts`)
+1. **Attendee Loading & Verification:**
+   Synced feedback responses directly populate verified attendees into the certificate roster.
 2. **Winner Selection:**
-   Coordinators select 1st, 2nd, and 3rd place winners from searchable attendee dropdowns (multi-winner teams supported).
-3. **Template Ingestion:**
-   Coordinators upload their official PowerPoint certificate template (`.pptx`) or image (`.png`/`.jpg`).
-4. **Pure Client-Side PPTX & PDF Generation (`certificateExport.ts`):**
-   * Using **`JSZip`**, the application opens the `.pptx` file directly in memory.
-   * It extracts the high-resolution slide background from `ppt/media/`.
-   * For the PowerPoint archive, it replaces the XML placeholder `<<name>>` and merit positions directly inside `ppt/slides/slide1.xml`.
-   * For the PDF archive, **`jsPDF`** draws the extracted template background, calculates centered coordinates, and renders the student's name in crisp vector typography.
-5. **Dual-Folder ZIP Export:**
-   The browser packages two organized folders into a single `.zip` file:
-   * `Winners_Appreciation_Certificates/` (1st, 2nd, 3rd place PDFs & PPTXs)
-   * `Participation_Certificates/` (All verified attendee PDFs & PPTXs)
+   Coordinators select 1st, 2nd, and 3rd place winners from searchable attendee dropdowns with full multi-winner support.
+3. **Advanced Visual Customizer Studio (`/events/[id]/certificates/pdf`):**
+   * **Interactive Drag & Slider Canvas:** Real-time visual manipulation of text coordinates (X %, Y %, Font Size, Alignment, Color) for Name, Details, Date/Venue, and Faculty Signatures.
+   * **Superscript Ordinal Typography Engine:** Automatically parses merit positions (e.g., `1st`, `2nd`, `3rd`, `10th`, `21st`) and renders clean vector superscript typography (`1ˢᵗ`, `2ⁿᵈ`, `3ʳᵈ`) in jsPDF by dynamically scaling character heights (0.55x) and shifting vertical baselines.
+   * **Dynamic Write-Up Interpolation:** Custom templates support placeholders `{name}`, `{position}`, `{event_name}`, `{date}`, `{venue}` with instant live canvas previews.
+4. **Dual-Folder Batch ZIP Export (`certificateExport.ts`):**
+   Client-side packaging with `JSZip` delivers a clean, organized `.zip` containing:
+   * `Winners_Appreciation_Certificates/`: High-resolution vector PDFs for 1st, 2nd, and 3rd place awardees.
+   * `Participation_Certificates/`: Individual verified vector PDFs for all attendees.
 
 ---
 
@@ -366,10 +387,23 @@ The platform uses two tables connected by coordinator name arrays:
 | `status` | `TEXT` | `'planned'`, `'confirmed'`, `'completed'` |
 | `assigned_coordinators` | `TEXT[]` | Array of student coordinator names |
 | `google_form_url` | `TEXT` | Published Google Form link |
-| `google_sheet_url` | `TEXT` | Linked Google Sheet responses URL |
-| `registered_attendees` | `JSONB` | Array of students registered |
-| `feedback_attendees` | `JSONB` | Array of students who submitted feedback |
+| `google_form_edit_url` | `TEXT` | Google Form edit link |
+| `google_form_id` | `TEXT` | Google Form Drive file ID |
+| `google_sheet_url` | `TEXT` | Linked Registrations Google Sheet URL |
+| `google_sheet_id` | `TEXT` | Registrations Google Sheet file ID |
+| `is_registration_closed` | `BOOLEAN` | Whether registration submissions are locked |
+| `registered_attendees` | `JSONB` | Array of students registered from Google Sheet |
+| `feedback_google_form_url` | `TEXT` | Published Feedback Google Form link |
+| `feedback_google_form_edit_url` | `TEXT` | Feedback Google Form edit link |
+| `feedback_google_form_id` | `TEXT` | Feedback Google Form Drive file ID |
+| `feedback_google_sheet_url` | `TEXT` | Linked Feedback Google Sheet responses URL |
+| `feedback_google_sheet_id` | `TEXT` | Feedback Google Sheet file ID |
+| `is_feedback_closed` | `BOOLEAN` | Whether feedback submissions are locked |
+| `feedback_attendees` | `JSONB` | Array of verified students who submitted feedback |
 | `winners` | `JSONB` | JSON object containing `first_place`, `second_place`, `third_place` |
+| `certificate_templates` | `JSONB` | Custom template coordinate offsets & background image |
+| `certificate_writeups` | `JSONB` | Custom write-up body text templates |
+| `custom_feedback_questions` | `JSONB` | Event-specific CO/PO survey questions |
 
 ### `members` Table
 | Column | Type | Description |
@@ -382,4 +416,30 @@ The platform uses two tables connected by coordinator name arrays:
 | `member_type` | `TEXT` | `'old_coordinator'` or `'new_coordinator'` |
 | `is_active` | `BOOLEAN` | Active term status (`true` / `false`) |
 | `events_coordinated_count` | `INTEGER` | Real-time count of events coordinated |
+
+---
+
+## 7. Recent Operational Upgrades & Change Log Summary
+
+The following major upgrades have been designed, tested, and implemented in the CSI Operations platform:
+
+### 1. Dual Independent Webhook Architecture
+* **Decoupled Workflows:** Split Google Apps Script webhooks into `NEXT_PUBLIC_CSI_GOOGLE_WEBHOOK_URL` (registrations) and `NEXT_PUBLIC_CSI_FEEDBACK_WEBHOOK_URL` (feedback) to allow independent deployments and permissions.
+* **Institutional Permissions Configured:**
+  * Registration forms configured with `setCollectEmail(false)` and `setLimitOneResponsePerUser(false)` so students can register rapidly without email login gates.
+  * Feedback forms configured with `setLimitOneResponsePerUser(true)` to enforce strict 1-response-per-student compliance for NBA/NAAC auditing.
+
+### 2. Dedicated Certificate Visual Customizer Studio (`/pdf`)
+* **Real-time Visual Layout:** Added `/events/[id]/certificates/pdf` featuring interactive sliders and draggable visual elements directly over high-resolution certificate templates.
+* **Vector Superscript Ordinal Engine:** Implemented proportional ordinal typography in jsPDF (`1ˢᵗ`, `2ⁿᵈ`, `3ʳᵈ`, `10ᵗʰ`, `21ˢᵗ`), ensuring certificates render with publication-grade typography.
+* **Dynamic Template Placeholders:** Supported `{name}`, `{position}`, `{event_name}`, `{date}`, `{venue}` interpolation with live instant preview.
+* **Clean Batch ZIP Packaging:** Configured `JSZip` to generate neatly organized dual folders (`Winners_Appreciation_Certificates/` and `Participation_Certificates/`) containing high-res vector PDFs.
+
+### 3. State Resilience & Anti-Flicker Architecture
+* **Race Condition Fix:** Resolved an asynchronous race condition during Google Drive form generation where out-of-order Supabase sync queries briefly wiped out newly assigned form URLs, eliminating the visual button flicker.
+* **Optimistic Local Cache Precedence:** Event state transitions now render immediately from local storage cache while background syncing occurs smoothly without interrupting the user.
+
+### 4. Professionalized Feedback Form Presentation
+* **Refined Header Descriptions:** Replaced awkward sentence fragments in `getFeedbackHeaderDescription()` with a polite, standardized invitation to share feedback while preserving mandatory appreciation notices.
+* **Direct Presentation Integration:** Enabled on-screen projector-ready QR codes and shortened URLs for effortless auditorium displays during event conclusions.
 
