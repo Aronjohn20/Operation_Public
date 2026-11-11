@@ -154,7 +154,7 @@ export default function EventsArchivePage() {
             Events Hosted Archive
           </h1>
           <p className="text-slate-300 text-[16px] mt-1.5 max-w-3xl">
-            Comprehensive history and active operations container repository for all technical competitions, workshops, and flagship events hosted by Computer Society of India (CSI) SB RSET.
+            Comprehensive history and active operations container repository for all technical competitions, workshops, and flagship events hosted by Computer Society of India (CSI) Student Branch.
           </p>
         </div>
 

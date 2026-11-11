@@ -1,9 +1,9 @@
 /**
  * ============================================================================
- * CSI SB RSET - Automated Google Form & Responses Sheet Generator
+ * TECHNICAL STUDENT SOCIETY - Automated Google Form & Responses Sheet Generator
  * ============================================================================
  * Instructions:
- * 1. Open Google Drive in your CSI Gmail account (https://drive.google.com).
+ * 1. Open Google Drive in your society account (https://drive.google.com).
  * 2. Go to Google Apps Script (https://script.google.com) and click "+ New project".
  * 3. Delete any default code, paste this entire script, and click Save (💾).
  * 4. Update EVENT_CONFIG below if running for a different event.
@@ -43,9 +43,9 @@ function createRegistrationFormAndSheet() {
     .setTitle("Name")
     .setRequired(true);
 
-  // Q3: Rajagiri Email ID * (Short Answer)
+  // Q3: College Email ID * (Short Answer)
   form.addTextItem()
-    .setTitle("Rajagiri Email ID")
+    .setTitle("College Email ID")
     .setRequired(true);
 
   // Q4: Contact No.(Preferably WhatsApp) * (Short Answer)

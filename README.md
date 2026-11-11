@@ -5,7 +5,7 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-CSS-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-purple?style=for-the-badge)](LICENSE)
 
-An enterprise-grade operational orchestration and event automation platform built for the **Computer Society of India (CSI) Student Branch** at **Rajagiri School of Engineering & Technology (RSET)**.
+An enterprise-grade operational orchestration and event automation platform built for the **Computer Society of India (CSI) Student Branch**.
 
 CSI Operations integrates the **entire lifecycle of a technical student branch** into a single web application: from event container creation, workload-balanced coordinator allocation, and institutional letters, to 1-click Google Drive forms, live attendance mapping, NBA/NAAC outcome-based feedback surveys, and a visual Certificate Studio with vector superscript typography.
 
@@ -105,7 +105,7 @@ If you want to deploy this system for your own university or tech chapter:
 - Displays visual indicators in the event wizard to prevent coordinator burnout and ensure equitable task distribution.
 
 ### 2. Institutional Document Generator (`documentExport.ts`)
-- **Official Attendance Sign-In Sheets**: Automatically formats student tables, faculty sign-off blocks, and official RSET & CSI emblems (Exportable in **Word `.docx`** and **Vector `.pdf`**).
+- **Official Attendance Sign-In Sheets**: Automatically formats student tables, faculty sign-off blocks, and official institutional & CSI emblems (Exportable in **Word `.docx`** and **Vector `.pdf`**).
 - **Principal Permission Letters**: Generates formal institutional requests addressed to college leadership with date, venue, and faculty coordinator endorsements.
 - **RSMS Student Intranet Notices**: Formats announcements ready for student portals.
 
@@ -130,7 +130,7 @@ If you want to deploy this system for your own university or tech chapter:
 
 ```
 ├── public/                 # Static assets, institutional crests & template previews
-│   └── logos/              # CSI and RSET high-resolution emblems
+│   └── logos/              # Sample emblems and badges
 ├── src/
 │   ├── app/                # Next.js 14 App Router
 │   │   ├── api/

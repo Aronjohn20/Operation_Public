@@ -67,7 +67,7 @@ const LIKERT_CHOICES = [
  */
 export function generateDefaultFeedbackQuestions(event: CSIEvent): FeedbackQuestion[] {
   const name = event.event_name;
-  const desc = event.brief_description || "technical event organized by CSI Student Branch RSET";
+  const desc = event.brief_description || "technical event organized by CSI Student Branch";
   const text = `${name} ${desc}`.toLowerCase();
 
   const isContest =
@@ -370,7 +370,7 @@ export function generateDefaultFeedbackQuestions(event: CSIEvent): FeedbackQuest
  * Builds the official form header description based on event aims
  */
 export function getFeedbackHeaderDescription(event: CSIEvent): string {
-  const intro = `Please take a moment to share your valuable feedback and ratings for ${event.event_name}, organized by the Computer Society of India (CSI) Student Branch, RSET.`;
+  const intro = `Please take a moment to share your valuable feedback and ratings for ${event.event_name}, organized by the Computer Society of India (CSI) Student Branch.`;
 
   return `${intro}\nThank you for participating – your feedback will help us improve and deliver even better events ahead!`;
 }
@@ -416,7 +416,7 @@ export function generateFeedbackGoogleAppsScript(
 
   return `/**
  * ============================================================================
- * CSI SB RSET - Automated Feedback Form & Certificate Roster Generator
+ * TECHNICAL STUDENT SOCIETY - Automated Feedback Form & Certificate Roster Generator
  * Event: ${event.event_name}
  * ============================================================================
  * Instructions:
@@ -726,7 +726,7 @@ export function generateMockFeedbackResponses(event: CSIEvent): FeedbackAttendee
     sl_no: idx + 1,
     name: s.name,
     uid: `U220${101 + idx}`,
-    email: `${s.name.toLowerCase().replace(/\s+/g, ".")}@rajagiri.edu.in`,
+    email: `${s.name.toLowerCase().replace(/\s+/g, ".")}@example.com`,
     gender: s.gender,
     year_of_study: s.year,
     branch: branches[idx % branches.length],
@@ -737,7 +737,7 @@ export function generateMockFeedbackResponses(event: CSIEvent): FeedbackAttendee
       "Quality of Content": "Strongly Agree",
       "Problem-Solving Impact": "Strongly Agree",
     },
-    comments: "Excellent session organized by CSI SB RSET! Highly informative.",
+    comments: "Excellent session organized by CSI Student Branch! Highly informative.",
     submitted_at: new Date().toISOString(),
   }));
 }

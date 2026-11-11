@@ -1,7 +1,7 @@
 /**
  * ============================================================================
- * CSI SB RSET - Master Automation Webhook
- * One-time deployment for all CSI technical events:
+ * TECHNICAL STUDENT SOCIETY - Master Automation Webhook
+ * One-time deployment for all technical events:
  * Handles Registration Form, Feedback Form, Drive Linking, and Response Sync.
  * ============================================================================
  */
@@ -9,7 +9,7 @@
 // Test endpoint to check if webhook is live
 function doGet(e) {
   return ContentService.createTextOutput(
-    JSON.stringify({ status: "online", message: "CSI SB RSET Master Webhook Hub is active." })
+    JSON.stringify({ status: "online", message: "Master Automation Webhook Hub is active." })
   ).setMimeType(ContentService.MimeType.JSON);
 }
 
@@ -23,7 +23,7 @@ function doPost(e) {
     // ACTION 1: Create Registration Form & Linked Responses Sheet
     // -------------------------------------------------------------
     if (action === "create_form") {
-      const eventName = data.eventName || "CSI Event";
+      const eventName = data.eventName || "Technical Event";
       const targetDepts = data.targetDepartments && data.targetDepartments.length > 0
         ? data.targetDepartments
         : ["AI&DS", "CSBS", "CSE", "IT"];
@@ -45,9 +45,9 @@ function doPost(e) {
         .setTitle("Name")
         .setRequired(true);
 
-      // Q3: Rajagiri Email ID *
+      // Q3: College Email ID *
       form.addTextItem()
-        .setTitle("Rajagiri Email ID")
+        .setTitle("College Email ID")
         .setRequired(true);
 
       // Q4: Contact No.(Preferably WhatsApp) *

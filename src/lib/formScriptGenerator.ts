@@ -1,7 +1,7 @@
 import { CSIEvent, RegisteredAttendee } from "./types";
 
 /**
- * Maps branch abbreviations to official RSET departmental names
+ * Maps branch abbreviations to departmental names
  */
 export function getDepartmentChoices(targetBranches?: string[]): string[] {
   const branchMap: Record<string, string> = {
@@ -25,7 +25,7 @@ export function getDepartmentChoices(targetBranches?: string[]): string[] {
 }
 
 /**
- * Generates exact Google Apps Script matching the official CSI RSET Registration Form structure.
+ * Generates exact Google Apps Script matching the official Registration Form structure.
  * Automatically customizes Form Title and Department choices based on event parameters!
  */
 export function generateEventGoogleAppsScript(event: CSIEvent): string {
@@ -35,11 +35,11 @@ export function generateEventGoogleAppsScript(event: CSIEvent): string {
 
   return `/**
  * ============================================================================
- * CSI SB RSET - Automated Google Form & Responses Sheet Generator
+ * TECHNICAL STUDENT SOCIETY - Automated Google Form & Responses Sheet Generator
  * Event: ${event.event_name}
  * ============================================================================
  * Instructions:
- * 1. Open Google Drive in your CSI Gmail account (https://drive.google.com).
+ * 1. Open Google Drive in your society account (https://drive.google.com).
  * 2. Go to https://script.google.com and click "+ New project".
  * 3. Delete any default code, paste this entire script, and click Save (💾).
  * 4. Click "Run". Grant permissions (Click Advanced > Go to project (unsafe) > Allow).
@@ -71,9 +71,9 @@ function ${cleanFuncName}() {
     .setTitle("Name")
     .setRequired(true);
 
-  // Q3: Rajagiri Email ID * (Short Answer)
+  // Q3: College Email ID * (Short Answer)
   form.addTextItem()
-    .setTitle("Rajagiri Email ID")
+    .setTitle("College Email ID")
     .setRequired(true);
 
   // Q4: Contact No.(Preferably WhatsApp) * (Short Answer)

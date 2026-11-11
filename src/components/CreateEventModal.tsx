@@ -97,7 +97,7 @@ export default function CreateEventModal({ isOpen, onClose, onEventCreated }: Cr
       mode,
       venue,
       target_branches: targetBranches.length > 0 ? targetBranches : [...BRANCHES],
-      faculty_in_charge: "Dr. Tripti C (Faculty Coordinator)",
+      faculty_in_charge: "Faculty Coordinator",
       brief_description: briefDescription,
       status: "confirmed",
       required_coordinators: requiredCoordinators,

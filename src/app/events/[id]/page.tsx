@@ -804,7 +804,7 @@ export default function EventContainerPage() {
               mode: (data.mode || currentLocal?.mode || "Offline") as "Offline" | "Online",
               venue: data.venue || currentLocal?.venue || "Auditorium",
               target_branches: data.target_branches || currentLocal?.target_branches || ["CSE", "CSBS", "IT", "AD"],
-              faculty_in_charge: data.faculty_in_charge || currentLocal?.faculty_in_charge || "Dr. Tripti C",
+              faculty_in_charge: data.faculty_in_charge || currentLocal?.faculty_in_charge || "Faculty Coordinator",
               brief_description: data.brief_description || currentLocal?.brief_description || "",
               status: (data.status || currentLocal?.status || "confirmed") as "planned" | "confirmed" | "completed",
               required_coordinators: Number(data.required_coordinators) || currentLocal?.required_coordinators || 2,
@@ -906,7 +906,7 @@ export default function EventContainerPage() {
   const mockBitlyUrl = event.google_form_url || `https://bit.ly/csi-${event.event_name.toLowerCase().replace(/[^a-z0-9]/g, "").slice(0, 8)}`;
   const mockFeedbackUrl = `https://forms.gle/csi-feedback-${event.id}`;
 
-  const facultyCoordinator = "Dr. Tripti C";
+  const facultyCoordinator = "Faculty Coordinator";
   const formattedDateFull = formatFullDateWithDay(event.event_date);
   const timeFormatted = `${event.time_start || "11:35 AM"} – ${event.time_end || "12:30 PM"}`;
   const venueLabel = event.mode === "Online" ? "Platform" : "Venue";
@@ -926,7 +926,7 @@ export default function EventContainerPage() {
       : ["CSI Student Coordinators"];
 
   // RSMS Notice description (Standard format from approved template without brief description/impromptu)
-  const rsmsDescription = `The Computer Society of India SB RSET, is conducting ${event.mode === "Online" ? "an online competition" : "a technical event"}, ${event.event_name}, for students of all years.`;
+  const rsmsDescription = `The Computer Society of India Student Branch is conducting ${event.mode === "Online" ? "an online competition" : "a technical event"}, ${event.event_name}, for students of all years.`;
 
   return (
     <div className="space-y-8 max-w-6xl mx-auto pb-12">
@@ -1233,7 +1233,7 @@ export default function EventContainerPage() {
               <div className="space-y-1">
                 <p>To</p>
                 <p>The Principal,</p>
-                <p>Rajagiri School of Engineering and Technology,</p>
+                <p>College of Engineering &amp; Technology,</p>
                 <p>Kakkanad.</p>
               </div>
 
@@ -1244,7 +1244,7 @@ export default function EventContainerPage() {
               <p>Respected Sir,</p>
 
               <p className="text-justify">
-                The Computer Society of India (CSI) Student Branch, RSET, is planning to organize a technical event titled <strong>{event.event_name}</strong>. {event.brief_description || "The event is designed to introduce participants to core Computer Science concepts and technical skills through interactive sessions and challenges."}
+                The Computer Society of India (CSI) Student Branch is planning to organize a technical event titled <strong>{event.event_name}</strong>. {event.brief_description || "The event is designed to introduce participants to core Computer Science concepts and technical skills through interactive sessions and challenges."}
               </p>
 
               <p className="text-justify">
@@ -1266,7 +1266,7 @@ export default function EventContainerPage() {
                 <p>Yours faithfully,</p>
                 <p className="font-bold pt-2">{facultyCoordinator}</p>
                 <p>Faculty Coordinator</p>
-                <p>CSI Student Branch, RSET</p>
+                <p>CSI Student Branch</p>
               </div>
             </div>
           </div>
@@ -1403,7 +1403,7 @@ export default function EventContainerPage() {
                     </div>
                     <div className="flex items-center gap-2">
                       <span className="text-amber-400 font-bold font-mono">4.</span>
-                      <span className="font-bold text-white">Rajagiri Email ID</span>
+                      <span className="font-bold text-white">College Email ID</span>
                       <span className="text-red-400 font-bold">*</span>
                     </div>
                     <div className="flex items-center gap-2">
@@ -1937,7 +1937,7 @@ export default function EventContainerPage() {
             <div>
               <h3 className="text-lg font-bold text-emerald-400 tracking-wide flex items-center gap-2">
                 <FileText className="w-5 h-5" />
-                Attendance Sheet (With RSET &amp; CSI Official Logos)
+                Attendance Sheet (With Society Emblems)
               </h3>
             </div>
             <div className="flex items-center gap-2.5 flex-wrap">
@@ -1997,15 +1997,15 @@ export default function EventContainerPage() {
               <div className="w-24 shrink-0 flex items-center justify-start">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/logos/rset_logo.png"
-                  alt="RSET Silver Jubilee Logo"
+                  src="/logos/sample_institute_logo.png"
+                  alt="Institute Logo"
                   className="h-20 w-auto object-contain"
                 />
               </div>
 
               <div className="text-center flex-1 space-y-1.5">
                 <h4 className="text-lg sm:text-[20px] font-bold tracking-normal uppercase text-black">
-                  COMPUTER SOCIETY OF INDIA SB RSET
+                  TECHNICAL STUDENT SOCIETY
                 </h4>
                 <p className="text-base sm:text-[18px] font-bold tracking-wide text-black">
                   ATTENDANCE SHEET
@@ -2015,8 +2015,8 @@ export default function EventContainerPage() {
               <div className="w-24 shrink-0 flex items-center justify-end">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/logos/csi_logo.png"
-                  alt="CSI Official Logo"
+                  src="/logos/sample_club_logo.png"
+                  alt="Club Logo"
                   className="h-16 w-16 object-contain"
                 />
               </div>

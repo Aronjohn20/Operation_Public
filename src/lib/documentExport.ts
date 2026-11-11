@@ -110,7 +110,7 @@ export function exportToWord(filename: string, title: string, htmlBody: string) 
 
 /**
  * -------------------------------------------------------------
- * 1. ATTENDANCE SHEET EXPORTERS (With RSET & CSI Logos)
+ * 1. ATTENDANCE SHEET EXPORTERS (With Institutional & CSI Logos)
  * -------------------------------------------------------------
  */
 export function exportAttendancePdf(
@@ -149,7 +149,7 @@ export function exportAttendancePdf(
   doc.setFont("helvetica", "bold");
   doc.setFontSize(12);
   doc.setTextColor(0, 0, 0);
-  doc.text("COMPUTER SOCIETY OF INDIA SB RSET", pageWidth / 2, 19, { align: "center" });
+  doc.text("COMPUTER SOCIETY OF INDIA STUDENT BRANCH", pageWidth / 2, 19, { align: "center" });
 
   doc.setFontSize(12);
   doc.text("ATTENDANCE SHEET", pageWidth / 2, 27, { align: "center" });
@@ -294,10 +294,10 @@ export function exportAttendanceWord(
     <table style="width: 100%; border: none; margin-bottom: 24px; font-family: Calibri, 'Segoe UI', Arial, sans-serif;">
       <tr style="border: none;">
         <td style="width: 20%; border: none; vertical-align: middle; text-align: left;">
-          <img src="${RSET_LOGO_BASE64}" width="65" height="92" alt="RSET Logo" style="display: inline-block;" />
+          <img src="${RSET_LOGO_BASE64}" width="65" height="92" alt="Institute Logo" style="display: inline-block;" />
         </td>
         <td style="width: 60%; border: none; vertical-align: middle; text-align: center;">
-          <h3 style="margin: 0; font-family: Calibri, sans-serif; font-size: 13.5pt; font-weight: bold; text-transform: uppercase;">COMPUTER SOCIETY OF INDIA SB RSET</h3>
+          <h3 style="margin: 0; font-family: Calibri, sans-serif; font-size: 13.5pt; font-weight: bold; text-transform: uppercase;">COMPUTER SOCIETY OF INDIA STUDENT BRANCH</h3>
           <p style="margin: 8px 0 0 0; font-family: Calibri, sans-serif; font-size: 12.5pt; font-weight: bold; letter-spacing: 0.5px;">ATTENDANCE SHEET</p>
         </td>
         <td style="width: 20%; border: none; vertical-align: middle; text-align: right;">
@@ -503,7 +503,7 @@ export function exportPermissionPdf(
   venue: string,
   briefDescription: string = "",
   targetBranchesString: string = "eligible",
-  facultyCoordinator: string = "Dr. Tripti C (Faculty Coordinator)"
+  facultyCoordinator: string = "Faculty Coordinator"
 ) {
   const doc = new jsPDF({
     orientation: "portrait",
@@ -524,7 +524,7 @@ export function exportPermissionPdf(
 
   doc.text("To", margin, y); y += 5.5;
   doc.text("The Principal,", margin, y); y += 5.5;
-  doc.text("Rajagiri School of Engineering and Technology,", margin, y); y += 5.5;
+  doc.text("College of Engineering & Technology,", margin, y); y += 5.5;
   doc.text("Kakkanad.", margin, y); y += 10;
 
   // Subject
@@ -539,7 +539,7 @@ export function exportPermissionPdf(
   y += 7;
 
   // Body Paragraph 1
-  const p1Text = `The Computer Society of India (CSI) Student Branch, RSET, is planning to organize a technical event titled ${eventName}. ${briefDescription || "The event is designed to introduce participants to core Computer Science concepts such as problem solving, logic, and analytical thinking through interactive challenges."}`;
+  const p1Text = `The Computer Society of India (CSI) Student Branch is planning to organize a technical event titled ${eventName}. ${briefDescription || "The event is designed to introduce participants to core Computer Science concepts such as problem solving, logic, and analytical thinking through interactive challenges."}`;
   const p1Lines = doc.splitTextToSize(p1Text, contentWidth);
   doc.text(p1Lines, margin, y);
   y += p1Lines.length * 5.2 + 5;
@@ -576,7 +576,7 @@ export function exportPermissionPdf(
   doc.text(facultyCoordinator, margin, y); y += 5.2;
   doc.setFont("times", "normal");
   doc.text("Faculty Coordinator", margin, y); y += 5.2;
-  doc.text("CSI Student Branch, RSET", margin, y);
+  doc.text("CSI Student Branch", margin, y);
 
   doc.save(`${filename.replace(/[^a-zA-Z0-9_-]/g, "_")}.pdf`);
 }
@@ -589,12 +589,12 @@ export function exportPermissionWord(
   venue: string,
   briefDescription: string = "",
   targetBranchesString: string = "eligible",
-  facultyCoordinator: string = "Dr. Tripti C (Faculty Coordinator)"
+  facultyCoordinator: string = "Faculty Coordinator"
 ) {
   const html = `
     <p style="margin: 0 0 3pt 0;">To</p>
     <p style="margin: 0 0 3pt 0;">The Principal,</p>
-    <p style="margin: 0 0 3pt 0;">Rajagiri School of Engineering and Technology,</p>
+    <p style="margin: 0 0 3pt 0;">College of Engineering & Technology,</p>
     <p style="margin: 0 0 14pt 0;">Kakkanad.</p>
 
     <p style="margin: 0 0 12pt 0;"><strong>Subject: Request for Conducting Technical Event "${eventName}"</strong></p>
@@ -602,7 +602,7 @@ export function exportPermissionWord(
     <p style="margin: 0 0 10pt 0;">Respected Sir,</p>
 
     <p style="margin: 0 0 12pt 0; text-align: justify;">
-      The Computer Society of India (CSI) Student Branch, RSET, is planning to organize a technical event titled <strong>${eventName}</strong>. ${briefDescription || "The event is designed to introduce participants to core Computer Science concepts such as problem solving, logic, and analytical thinking through interactive challenges."}
+      The Computer Society of India (CSI) Student Branch is planning to organize a technical event titled <strong>${eventName}</strong>. ${briefDescription || "The event is designed to introduce participants to core Computer Science concepts such as problem solving, logic, and analytical thinking through interactive challenges."}
     </p>
 
     <p style="margin: 0 0 12pt 0; text-align: justify;">
@@ -622,7 +622,7 @@ export function exportPermissionWord(
 
     <p style="margin: 0 0 2pt 0;"><strong>${facultyCoordinator}</strong></p>
     <p style="margin: 0 0 2pt 0;">Faculty Coordinator</p>
-    <p style="margin: 0 0 0 0;">CSI Student Branch, RSET</p>
+    <p style="margin: 0 0 0 0;">CSI Student Branch</p>
   `;
 
   exportToWord(filename, `Permission_Letter_${eventName}`, html);

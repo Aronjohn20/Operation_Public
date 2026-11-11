@@ -84,7 +84,7 @@ export async function syncEventsWithSupabase(): Promise<CSIEvent[]> {
         mode: (dbRow.mode || fallback?.mode || "Offline") as "Offline" | "Online",
         venue: dbRow.venue || fallback?.venue || "Auditorium",
         target_branches: dbRow.target_branches || fallback?.target_branches || ["CSE", "CSBS", "IT", "AD"],
-        faculty_in_charge: dbRow.faculty_in_charge || fallback?.faculty_in_charge || "Dr. Tripti C",
+        faculty_in_charge: dbRow.faculty_in_charge || fallback?.faculty_in_charge || "Faculty Coordinator",
         brief_description: dbRow.brief_description || fallback?.brief_description || "",
         status: (dbRow.status || fallback?.status || "confirmed") as "planned" | "confirmed" | "completed",
         required_coordinators: Number(dbRow.required_coordinators) || fallback?.required_coordinators || 2,

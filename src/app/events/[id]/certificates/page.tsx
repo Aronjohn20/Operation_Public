@@ -1391,11 +1391,11 @@ export default function CertificateStudioPage() {
                   );
                   setStatusNotice({
                     type: "success",
-                    text: "Switched to Official CSI SB RSET Appreciation Certificate vector template.",
+                    text: "Switched to Built-in Appreciation Certificate vector template.",
                   });
                 }}
                 className="text-xs px-2.5 py-1 rounded-lg bg-purple-900/40 hover:bg-purple-800 text-purple-200 hover:text-white flex items-center gap-1 font-bold border border-purple-500/30 transition"
-                title="Reset to built-in official CSI SB RSET vector template"
+                title="Reset to built-in vector template"
               >
                 <RotateCcw className="w-3 h-3" />
                 <span>Use Official Template</span>
@@ -1452,11 +1452,11 @@ export default function CertificateStudioPage() {
                   );
                   setStatusNotice({
                     type: "success",
-                    text: "Switched to Official CSI SB RSET Participation Certificate vector template.",
+                    text: "Switched to Built-in Participation Certificate vector template.",
                   });
                 }}
                 className="text-xs px-2.5 py-1 rounded-lg bg-purple-900/40 hover:bg-purple-800 text-purple-200 hover:text-white flex items-center gap-1 font-bold border border-purple-500/30 transition"
-                title="Reset to built-in official CSI SB RSET vector template"
+                title="Reset to built-in vector template"
               >
                 <RotateCcw className="w-3 h-3" />
                 <span>Use Official Template</span>

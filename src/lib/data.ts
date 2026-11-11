@@ -60,26 +60,26 @@ const sample25Attendees: RegisteredAttendee[] = [
 
 // Sample 20 feedback attendees for Event 3 (Completed with Winners)
 const sample20FeedbackAttendees: FeedbackAttendee[] = [
-  { uid: "U230101", name: "Aarav Sharma", email: "aarav.s@rajagiri.edu", gender: "Mr", year_of_study: "3rd", branch: "CSE", section: "Alpha", whatsapp: "9847000001", ratings: { "Overall Event Quality (PO10)": "5", "Relevance & Execution (PO11)": "5" }, comments: "Exceptional pitch session and great leadership feedback." },
-  { uid: "U230102", name: "Diya Nair", email: "diya.n@rajagiri.edu", gender: "Ms", year_of_study: "3rd", branch: "CSBS", section: "Beta", whatsapp: "9847000002", ratings: { "Overall Event Quality (PO10)": "5", "Relevance & Execution (PO11)": "4" }, comments: "The crisis management simulation was very engaging." },
-  { uid: "U230103", name: "Rohan Kurian", email: "rohan.k@rajagiri.edu", gender: "Mr", year_of_study: "2nd", branch: "IT", section: "Alpha", whatsapp: "9847000003", ratings: { "Overall Event Quality (PO10)": "4", "Relevance & Execution (PO11)": "5" }, comments: "Great panel questions and judges' insights." },
-  { uid: "U230104", name: "Ananya Menon", email: "ananya.m@rajagiri.edu", gender: "Ms", year_of_study: "4th", branch: "AD", section: "Nil", whatsapp: "9847000004", ratings: { "Overall Event Quality (PO10)": "5", "Relevance & Execution (PO11)": "5" }, comments: "Well-structured rounds." },
-  { uid: "U230105", name: "Kevin Varghese", email: "kevin.v@rajagiri.edu", gender: "Mr", year_of_study: "3rd", branch: "CSE", section: "Gamma", whatsapp: "9847000005", ratings: { "Overall Event Quality (PO10)": "4", "Relevance & Execution (PO11)": "4" }, comments: "Smooth audio-visual and time management." },
-  { uid: "U230106", name: "Sneha Roy", email: "sneha.r@rajagiri.edu", gender: "Ms", year_of_study: "2nd", branch: "CSBS", section: "Alpha", whatsapp: "9847000006", ratings: { "Overall Event Quality (PO10)": "5", "Relevance & Execution (PO11)": "5" }, comments: "Loved the mock tech leadership round!" },
-  { uid: "U230107", name: "Adithya P", email: "adithya.p@rajagiri.edu", gender: "Mr", year_of_study: "3rd", branch: "IT", section: "Beta", whatsapp: "9847000007", ratings: { "Overall Event Quality (PO10)": "4", "Relevance & Execution (PO11)": "4" }, comments: "Good organization." },
-  { uid: "U230108", name: "Meera Pillai", email: "meera.p@rajagiri.edu", gender: "Ms", year_of_study: "1st", branch: "CSE", section: "Delta", whatsapp: "9847000008", ratings: { "Overall Event Quality (PO10)": "5", "Relevance & Execution (PO11)": "5" }, comments: "Exciting technical debate." },
-  { uid: "U230109", name: "Naveen Joy", email: "naveen.j@rajagiri.edu", gender: "Mr", year_of_study: "3rd", branch: "AD", section: "Alpha", whatsapp: "9847000009", ratings: { "Overall Event Quality (PO10)": "4", "Relevance & Execution (PO11)": "5" }, comments: "Helpful pointers on public speaking." },
-  { uid: "U230110", name: "Sarah Elsa", email: "sarah.e@rajagiri.edu", gender: "Ms", year_of_study: "2nd", branch: "CSE", section: "Beta", whatsapp: "9847000010", ratings: { "Overall Event Quality (PO10)": "5", "Relevance & Execution (PO11)": "4" }, comments: "Keep organizing more of these debate initiatives." },
-  { uid: "U230111", name: "Gautham Krishna", email: "gautham.k@rajagiri.edu", gender: "Mr", year_of_study: "3rd", branch: "ECE", section: "Alpha", whatsapp: "9847000011", ratings: { "Overall Event Quality (PO10)": "4", "Relevance & Execution (PO11)": "4" }, comments: "Good experience overall." },
-  { uid: "U230112", name: "Tessa Mary", email: "tessa.m@rajagiri.edu", gender: "Ms", year_of_study: "2nd", branch: "AD", section: "Gamma", whatsapp: "9847000012", ratings: { "Overall Event Quality (PO10)": "5", "Relevance & Execution (PO11)": "5" }, comments: "Very fun and competitive." },
-  { uid: "U230113", name: "Abhay Joseph", email: "abhay.j@rajagiri.edu", gender: "Mr", year_of_study: "3rd", branch: "CSE", section: "Alpha", whatsapp: "9847000013", ratings: { "Overall Event Quality (PO10)": "5", "Relevance & Execution (PO11)": "4" }, comments: "Engaging scenarios." },
-  { uid: "U230114", name: "Rithika Sen", email: "rithika.s@rajagiri.edu", gender: "Ms", year_of_study: "2nd", branch: "IT", section: "Delta", whatsapp: "9847000014", ratings: { "Overall Event Quality (PO10)": "4", "Relevance & Execution (PO11)": "5" }, comments: "Well-managed timeline." },
-  { uid: "U230115", name: "Joel Mathew", email: "joel.m@rajagiri.edu", gender: "Mr", year_of_study: "4th", branch: "CSBS", section: "Beta", whatsapp: "9847000015", ratings: { "Overall Event Quality (PO10)": "5", "Relevance & Execution (PO11)": "5" }, comments: "Great mock leadership round." },
-  { uid: "U230116", name: "Lakshmi Priya", email: "lakshmi.p@rajagiri.edu", gender: "Ms", year_of_study: "2nd", branch: "CSE", section: "Gamma", whatsapp: "9847000016", ratings: { "Overall Event Quality (PO10)": "4", "Relevance & Execution (PO11)": "4" }, comments: "Appreciated the direct feedback from seniors." },
-  { uid: "U230117", name: "Arjun Rajesh", email: "arjun.r@rajagiri.edu", gender: "Mr", year_of_study: "3rd", branch: "AD", section: "Alpha", whatsapp: "9847000017", ratings: { "Overall Event Quality (PO10)": "5", "Relevance & Execution (PO11)": "5" }, comments: "Awesome event format." },
-  { uid: "U230118", name: "Maria Thomas", email: "maria.t@rajagiri.edu", gender: "Ms", year_of_study: "3rd", branch: "CSE", section: "Beta", whatsapp: "9847000018", ratings: { "Overall Event Quality (PO10)": "5", "Relevance & Execution (PO11)": "4" }, comments: "Loved the crisis pitch scenario." },
-  { uid: "U230119", name: "Sanjay Kumar", email: "sanjay.k@rajagiri.edu", gender: "Mr", year_of_study: "4th", branch: "IT", section: "Nil", whatsapp: "9847000019", ratings: { "Overall Event Quality (PO10)": "4", "Relevance & Execution (PO11)": "4" }, comments: "Smooth organization." },
-  { uid: "U230120", name: "Bhavana Suresh", email: "bhavana.s@rajagiri.edu", gender: "Ms", year_of_study: "2nd", branch: "CSE", section: "Alpha", whatsapp: "9847000020", ratings: { "Overall Event Quality (PO10)": "5", "Relevance & Execution (PO11)": "5" }, comments: "Learned a lot about executive decision making." },
+  { uid: "U230101", name: "Aarav Sharma", email: "aarav.s@example.com", gender: "Mr", year_of_study: "3rd", branch: "CSE", section: "Alpha", whatsapp: "9847000001", ratings: { "Overall Event Quality (PO10)": "5", "Relevance & Execution (PO11)": "5" }, comments: "Exceptional pitch session and great leadership feedback." },
+  { uid: "U230102", name: "Diya Nair", email: "diya.n@example.com", gender: "Ms", year_of_study: "3rd", branch: "CSBS", section: "Beta", whatsapp: "9847000002", ratings: { "Overall Event Quality (PO10)": "5", "Relevance & Execution (PO11)": "4" }, comments: "The crisis management simulation was very engaging." },
+  { uid: "U230103", name: "Rohan Kurian", email: "rohan.k@example.com", gender: "Mr", year_of_study: "2nd", branch: "IT", section: "Alpha", whatsapp: "9847000003", ratings: { "Overall Event Quality (PO10)": "4", "Relevance & Execution (PO11)": "5" }, comments: "Great panel questions and judges' insights." },
+  { uid: "U230104", name: "Ananya Menon", email: "ananya.m@example.com", gender: "Ms", year_of_study: "4th", branch: "AD", section: "Nil", whatsapp: "9847000004", ratings: { "Overall Event Quality (PO10)": "5", "Relevance & Execution (PO11)": "5" }, comments: "Well-structured rounds." },
+  { uid: "U230105", name: "Kevin Varghese", email: "kevin.v@example.com", gender: "Mr", year_of_study: "3rd", branch: "CSE", section: "Gamma", whatsapp: "9847000005", ratings: { "Overall Event Quality (PO10)": "4", "Relevance & Execution (PO11)": "4" }, comments: "Smooth audio-visual and time management." },
+  { uid: "U230106", name: "Sneha Roy", email: "sneha.r@example.com", gender: "Ms", year_of_study: "2nd", branch: "CSBS", section: "Alpha", whatsapp: "9847000006", ratings: { "Overall Event Quality (PO10)": "5", "Relevance & Execution (PO11)": "5" }, comments: "Loved the mock tech leadership round!" },
+  { uid: "U230107", name: "Adithya P", email: "adithya.p@example.com", gender: "Mr", year_of_study: "3rd", branch: "IT", section: "Beta", whatsapp: "9847000007", ratings: { "Overall Event Quality (PO10)": "4", "Relevance & Execution (PO11)": "4" }, comments: "Good organization." },
+  { uid: "U230108", name: "Meera Pillai", email: "meera.p@example.com", gender: "Ms", year_of_study: "1st", branch: "CSE", section: "Delta", whatsapp: "9847000008", ratings: { "Overall Event Quality (PO10)": "5", "Relevance & Execution (PO11)": "5" }, comments: "Exciting technical debate." },
+  { uid: "U230109", name: "Naveen Joy", email: "naveen.j@example.com", gender: "Mr", year_of_study: "3rd", branch: "AD", section: "Alpha", whatsapp: "9847000009", ratings: { "Overall Event Quality (PO10)": "4", "Relevance & Execution (PO11)": "5" }, comments: "Helpful pointers on public speaking." },
+  { uid: "U230110", name: "Sarah Elsa", email: "sarah.e@example.com", gender: "Ms", year_of_study: "2nd", branch: "CSE", section: "Beta", whatsapp: "9847000010", ratings: { "Overall Event Quality (PO10)": "5", "Relevance & Execution (PO11)": "4" }, comments: "Keep organizing more of these debate initiatives." },
+  { uid: "U230111", name: "Gautham Krishna", email: "gautham.k@example.com", gender: "Mr", year_of_study: "3rd", branch: "ECE", section: "Alpha", whatsapp: "9847000011", ratings: { "Overall Event Quality (PO10)": "4", "Relevance & Execution (PO11)": "4" }, comments: "Good experience overall." },
+  { uid: "U230112", name: "Tessa Mary", email: "tessa.m@example.com", gender: "Ms", year_of_study: "2nd", branch: "AD", section: "Gamma", whatsapp: "9847000012", ratings: { "Overall Event Quality (PO10)": "5", "Relevance & Execution (PO11)": "5" }, comments: "Very fun and competitive." },
+  { uid: "U230113", name: "Abhay Joseph", email: "abhay.j@example.com", gender: "Mr", year_of_study: "3rd", branch: "CSE", section: "Alpha", whatsapp: "9847000013", ratings: { "Overall Event Quality (PO10)": "5", "Relevance & Execution (PO11)": "4" }, comments: "Engaging scenarios." },
+  { uid: "U230114", name: "Rithika Sen", email: "rithika.s@example.com", gender: "Ms", year_of_study: "2nd", branch: "IT", section: "Delta", whatsapp: "9847000014", ratings: { "Overall Event Quality (PO10)": "4", "Relevance & Execution (PO11)": "5" }, comments: "Well-managed timeline." },
+  { uid: "U230115", name: "Joel Mathew", email: "joel.m@example.com", gender: "Mr", year_of_study: "4th", branch: "CSBS", section: "Beta", whatsapp: "9847000015", ratings: { "Overall Event Quality (PO10)": "5", "Relevance & Execution (PO11)": "5" }, comments: "Great mock leadership round." },
+  { uid: "U230116", name: "Lakshmi Priya", email: "lakshmi.p@example.com", gender: "Ms", year_of_study: "2nd", branch: "CSE", section: "Gamma", whatsapp: "9847000016", ratings: { "Overall Event Quality (PO10)": "4", "Relevance & Execution (PO11)": "4" }, comments: "Appreciated the direct feedback from seniors." },
+  { uid: "U230117", name: "Arjun Rajesh", email: "arjun.r@example.com", gender: "Mr", year_of_study: "3rd", branch: "AD", section: "Alpha", whatsapp: "9847000017", ratings: { "Overall Event Quality (PO10)": "5", "Relevance & Execution (PO11)": "5" }, comments: "Awesome event format." },
+  { uid: "U230118", name: "Maria Thomas", email: "maria.t@example.com", gender: "Ms", year_of_study: "3rd", branch: "CSE", section: "Beta", whatsapp: "9847000018", ratings: { "Overall Event Quality (PO10)": "5", "Relevance & Execution (PO11)": "4" }, comments: "Loved the crisis pitch scenario." },
+  { uid: "U230119", name: "Sanjay Kumar", email: "sanjay.k@example.com", gender: "Mr", year_of_study: "4th", branch: "IT", section: "Nil", whatsapp: "9847000019", ratings: { "Overall Event Quality (PO10)": "4", "Relevance & Execution (PO11)": "4" }, comments: "Smooth organization." },
+  { uid: "U230120", name: "Bhavana Suresh", email: "bhavana.s@example.com", gender: "Ms", year_of_study: "2nd", branch: "CSE", section: "Alpha", whatsapp: "9847000020", ratings: { "Overall Event Quality (PO10)": "5", "Relevance & Execution (PO11)": "5" }, comments: "Learned a lot about executive decision making." },
 ];
 
 export const events: CSIEvent[] = [
@@ -98,7 +98,7 @@ export const events: CSIEvent[] = [
     venue: "Main Auditorium & Computing Labs",
     status: "planned",
     target_branches: ["CSE", "CSBS", "IT", "AD"],
-    faculty_in_charge: "Dr. Tripti C (Faculty Coordinator)",
+    faculty_in_charge: "Faculty Coordinator",
     brief_description: "Flagship 24-hour state-level hackathon challenging students to solve real-world industry problems across AI, Web3, and Systems Engineering.",
     required_coordinators: 3,
     assigned_coordinators: ["Alex Johnson", "Priya Sharma", "David Miller"],
@@ -107,7 +107,7 @@ export const events: CSIEvent[] = [
   // -------------------------------------------------------------
   // CONTAINER 2: Ongoing / Confirmed Event with 25 Attendees
   // Showcase: Live registration links, Attendance Sheet generation
-  // (.docx and .pdf with RSET/CSI crests), and RSMS Notice.
+  // (.docx and .pdf with crests), and Notice.
   // -------------------------------------------------------------
   {
     id: "e2",
@@ -119,7 +119,7 @@ export const events: CSIEvent[] = [
     venue: "Multimedia Lab 1",
     status: "confirmed",
     target_branches: ["CSE", "CSBS", "IT", "AD", "ECE"],
-    faculty_in_charge: "Dr. Tripti C (Faculty Coordinator)",
+    faculty_in_charge: "Faculty Coordinator",
     brief_description: "Intensive hands-on technical workshop on building autonomous LLM agents and multi-agent collaborative workflows.",
     required_coordinators: 2,
     assigned_coordinators: ["Amina Khan", "Siddharth Verma"],
@@ -147,7 +147,7 @@ export const events: CSIEvent[] = [
     venue: "Main Auditorium",
     status: "completed",
     target_branches: ["CSE", "CSBS", "IT", "AD"],
-    faculty_in_charge: "Dr. Tripti C (Faculty Coordinator)",
+    faculty_in_charge: "Faculty Coordinator",
     brief_description: "Impromptu tech pitch, crisis management scenario, and mock tech leadership panel.",
     required_coordinators: 4,
     assigned_coordinators: ["Alex Johnson", "Kevin Varghese", "Neha Patel", "Rohan Kurian"],

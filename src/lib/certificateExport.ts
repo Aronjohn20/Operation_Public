@@ -340,8 +340,8 @@ export function replaceWriteupInSlideXml(
   const isWinner = position === "1st" || position === "2nd" || position === "3rd";
   const posText = isWinner ? `${position} place` : "participant";
   const writeupSentence = isWinner
-    ? `has secured ${posText} in the ${mode} event titled ${eventName}, held on ${formattedDate}, organized by the Computer Society of India (CSI) SB at Rajagiri School of Engineering and Technology, Kakkanad.`
-    : `has actively participated in the ${mode} event titled ${eventName}, held on ${formattedDate}, organized by the Computer Society of India (CSI) SB at Rajagiri School of Engineering and Technology, Kakkanad.`
+    ? `has secured ${posText} in the ${mode} event titled ${eventName}, held on ${formattedDate}, organized by the Computer Society of India (CSI) Student Branch.`
+    : `has actively participated in the ${mode} event titled ${eventName}, held on ${formattedDate}, organized by the Computer Society of India (CSI) Student Branch.`
 
   xml = xml.replace(
     /(<<writeup>>|&lt;&lt;writeup&gt;&gt;|\{\{writeup\}\}|\{writeup\}|\[writeup\])/gi,
@@ -642,7 +642,7 @@ export async function createPptxWithName(
 }
 
 /**
- * Draws an official high-resolution CSI SB RSET Certificate on a jsPDF instance (Landscape A4)
+ * Draws an official high-resolution Certificate on a jsPDF instance (Landscape A4)
  * Based on the Python script logic: The only dynamic element is the formatted participant name
  * stamped onto the selected template!
  */
@@ -711,14 +711,14 @@ export function renderCertificatePage(
         { text: ` in the ${modeStr} Intra-College technical event titled ` },
         { text: info.eventName, bold: true },
         {
-          text: `, held on ${formattedDate}, organized by the Computer Society of India (CSI) SB at Rajagiri School of Engineering and Technology, Kakkanad.`,
+          text: `, held on ${formattedDate}, organized by the Computer Society of India (CSI) Student Branch.`,
         },
       ]
       : [
         { text: `has actively participated in the ${modeStr} Intra-College technical event titled ` },
         { text: info.eventName, bold: true },
         {
-          text: `, held on ${formattedDate}, organized by the Computer Society of India (CSI) SB at Rajagiri School of Engineering and Technology, Kakkanad.`,
+          text: `, held on ${formattedDate}, organized by the Computer Society of India (CSI) Student Branch.`,
         },
       ];
 
@@ -770,7 +770,7 @@ export function renderCertificatePage(
   doc.setFontSize(15);
   doc.setTextColor(24, 18, 43);
   doc.text(
-    "RAJAGIRI SCHOOL OF ENGINEERING & TECHNOLOGY (AUTONOMOUS)",
+    "COLLEGE OF ENGINEERING & TECHNOLOGY (AUTONOMOUS)",
     pageWidth / 2,
     y,
     { align: "center" }
@@ -780,7 +780,7 @@ export function renderCertificatePage(
   doc.setFontSize(12);
   doc.setTextColor(80, 70, 110);
   doc.text(
-    "COMPUTER SOCIETY OF INDIA STUDENT BRANCH - RSET",
+    "COMPUTER SOCIETY OF INDIA STUDENT BRANCH",
     pageWidth / 2,
     y,
     { align: "center" }
@@ -790,7 +790,7 @@ export function renderCertificatePage(
   doc.setFont("times", "italic");
   doc.setFontSize(9);
   doc.setTextColor(120, 120, 130);
-  doc.text("Rajagiri Valley, Kakkanad, Kochi, Kerala - 682039", pageWidth / 2, y, { align: "center" });
+  doc.text("University Campus, Innovation Valley", pageWidth / 2, y, { align: "center" });
 
   // 4. Certificate Badge / Title
   y += 13;
@@ -836,7 +836,7 @@ export function renderCertificatePage(
   doc.setTextColor(50, 50, 50);
 
   const uidStr = info.attendee.uid ? ` (UID: ${info.attendee.uid})` : "";
-  const branchStr = info.attendee.branch ? `Department of ${info.attendee.branch}` : "Rajagiri School of Engineering & Technology";
+  const branchStr = info.attendee.branch ? `Department of ${info.attendee.branch}` : "College of Engineering & Technology";
   const yearStr = info.attendee.year_of_study ? `${info.attendee.year_of_study} Year, ` : "";
 
   let achievementText = "";
@@ -883,20 +883,20 @@ export function renderCertificatePage(
   doc.text(counselor, margin + 40, sigY, { align: "center" });
   doc.setFont("times", "normal");
   doc.setFontSize(9.5);
-  doc.text("Branch Counselor, CSI SB RSET", margin + 40, sigY + 4.5, { align: "center" });
+  doc.text("Branch Counselor, CSI Student Branch", margin + 40, sigY + 4.5, { align: "center" });
   doc.setDrawColor(180, 180, 180);
   doc.setLineWidth(0.4);
   doc.line(margin + 15, sigY - 2, margin + 65, sigY - 2);
 
   // Middle Signature: Faculty Coordinator
-  const faculty = info.facultyCoordinator || "Dr. Tripti C";
+  const faculty = info.facultyCoordinator || "Faculty Coordinator";
   doc.setFont("times", "bold");
   doc.setFontSize(11);
   doc.setTextColor(24, 18, 43);
   doc.text(faculty, pageWidth / 2, sigY, { align: "center" });
   doc.setFont("times", "normal");
   doc.setFontSize(9.5);
-  doc.text("Faculty Coordinator, CSI SB RSET", pageWidth / 2, sigY + 4.5, { align: "center" });
+  doc.text("Faculty Coordinator, CSI Student Branch", pageWidth / 2, sigY + 4.5, { align: "center" });
   doc.line(pageWidth / 2 - 25, sigY - 2, pageWidth / 2 + 25, sigY - 2);
 
   // Right Signature: Student Chair
@@ -906,7 +906,7 @@ export function renderCertificatePage(
   doc.text("Student Chair", pageWidth - margin - 40, sigY, { align: "center" });
   doc.setFont("times", "normal");
   doc.setFontSize(9.5);
-  doc.text("CSI Student Branch, RSET", pageWidth - margin - 40, sigY + 4.5, { align: "center" });
+  doc.text("CSI Student Branch", pageWidth - margin - 40, sigY + 4.5, { align: "center" });
   doc.line(pageWidth - margin - 65, sigY - 2, pageWidth - margin - 15, sigY - 2);
 }
 
@@ -1171,7 +1171,7 @@ export async function exportCertificatesZip(
       console.warn("Could not generate master multi-slide PPTX for zip:", masterPptxErr);
     }
   } else {
-    // Default Official CSI SB RSET Vector Certificate (when no custom PPTX is uploaded)
+    // Default Official Vector Certificate (when no custom PPTX is uploaded)
     for (let i = 0; i < targetAttendees.length; i++) {
       const att = targetAttendees[i];
       const pos = getWinnerPosition(att, winners);
@@ -1339,7 +1339,7 @@ export function formatOrdinalDate(dateStr: string): string {
 }
 
 /**
- * Generates high-res raster data URL for official CSI RSET Coordinator Appreciation Certificate
+ * Generates high-res raster data URL for Coordinator Appreciation Certificate
  * using the pre-baked official template image (or uploaded custom template) with dynamic coordinator name, event, and date.
  */
 export async function generateCoordinatorCertificateDataUrl(
@@ -1464,18 +1464,18 @@ export async function generateCoordinatorCertificateDataUrl(
     { text: ",", bold: false },
   ]);
 
-  // Line 2: by Computer Society of India (CSI) SB RSET on [Date],
+  // Line 2: by Computer Society of India (CSI) Student Branch on [Date],
   renderMultiFontLine(474, [
     { text: "by ", bold: false },
-    { text: "Computer Society of India (CSI) SB RSET", bold: true },
+    { text: "Computer Society of India (CSI) Student Branch", bold: true },
     { text: " on ", bold: false },
     { text: formattedDate, bold: false },
     { text: ",", bold: false },
   ]);
 
-  // Line 3: at Rajagiri School of Engineering & Technology, Kakkanad.
+  // Line 3: at College of Engineering & Technology.
   renderMultiFontLine(502, [
-    { text: "at Rajagiri School of Engineering & Technology, Kakkanad.", bold: false },
+    { text: "at College of Engineering & Technology.", bold: false },
   ]);
 
   ctx.restore();
