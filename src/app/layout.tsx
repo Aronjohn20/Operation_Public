@@ -8,8 +8,8 @@ import { ThemeProvider } from "@/components/ThemeContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "CSI Operations | Student Branch Management",
-  description: "Operations and Event Management Platform for CSI Student Branch",
+  title: "Operations Platform | Student Event Management",
+  description: "Operations and Event Management Platform for Student Organizations",
 };
 
 export default function RootLayout({

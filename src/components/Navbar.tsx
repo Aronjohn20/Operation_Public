@@ -21,13 +21,13 @@ export default function Navbar() {
       <div className="px-5 py-6 border-b border-csi-border">
         <div className="flex items-center space-x-3">
           <div className="w-10 h-10 rounded-xl bg-csi-purple flex items-center justify-center font-extrabold text-base text-white shadow-lg shadow-csi-purple/30">
-            CSI
+            OP
           </div>
           <div>
             <Link href="/" className="font-extrabold text-base text-white hover:text-csi-purpleLight transition">
-              CSI Operations
+              Operations Platform
             </Link>
-            <p className="text-xs text-csi-textDim uppercase tracking-wider font-semibold">Student Chapter</p>
+            <p className="text-xs text-csi-textDim uppercase tracking-wider font-semibold">Student Chapter Hub</p>
           </div>
         </div>
       </div>

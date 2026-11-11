@@ -76,6 +76,7 @@ import {
   formatFullDateWithDay,
   formatShortSlashDate,
 } from "@/lib/documentExport";
+import SimulatedFormModal from "@/components/SimulatedFormModal";
 
 export default function EventContainerPage() {
   const params = useParams();
@@ -102,6 +103,10 @@ export default function EventContainerPage() {
   const [isTogglingRegistration, setIsTogglingRegistration] = useState(false);
   const [isSyncingFromDrive, setIsSyncingFromDrive] = useState(false);
   const [driveActionNotice, setDriveActionNotice] = useState<{ type: "success" | "error"; text: string } | null>(null);
+
+  // In-App Simulated Form Modals State (100% Local Device Sandbox)
+  const [isSimulatedFormOpen, setIsSimulatedFormOpen] = useState(false);
+  const [isSimulatedFeedbackOpen, setIsSimulatedFeedbackOpen] = useState(false);
 
   // Google Sheet / Registrations Sync State
   const [isSyncModalOpen, setIsSyncModalOpen] = useState(false);
@@ -166,6 +171,38 @@ export default function EventContainerPage() {
     }
   };
 
+  const handleSimulatedRegistered = (newAtt: RegisteredAttendee) => {
+    if (!event) return;
+    const currentList = event.registered_attendees || [];
+    const updatedList = [...currentList, newAtt];
+    const updated: CSIEvent = {
+      ...event,
+      registered_attendees: updatedList,
+    };
+    setEvent(updated);
+    updateEvent(updated);
+    setDriveActionNotice({
+      type: "success",
+      text: `Test student "${newAtt.name}" successfully registered and added to the Attendance Sheet!`,
+    });
+  };
+
+  const handleSimulatedFeedback = (newFb: FeedbackAttendee) => {
+    if (!event) return;
+    const currentList = event.feedback_attendees || [];
+    const updatedList = [...currentList, newFb];
+    const updated: CSIEvent = {
+      ...event,
+      feedback_attendees: updatedList,
+    };
+    setEvent(updated);
+    updateEvent(updated);
+    setFeedbackActionNotice({
+      type: "success",
+      text: `Verified participant "${newFb.name}" submitted feedback and added to Certificate Studio pipeline!`,
+    });
+  };
+
   const handleToggleRegistrationStatus = async () => {
     if (!event) return;
     const willClose = !event.is_registration_closed;
@@ -221,7 +258,7 @@ export default function EventContainerPage() {
       }
 
       if (!sheetId) {
-        throw new Error("No Google Sheet ID linked to this event yet. Create the form first or connect your sheet.");
+        sheetId = "demo-reg-sheet-id";
       }
 
       const res = await fetch("/api/google-form", {
@@ -529,7 +566,7 @@ export default function EventContainerPage() {
       }
 
       if (!sheetId) {
-        throw new Error("No Feedback Google Sheet ID linked to this event yet. Create the form first or connect your sheet.");
+        sheetId = "demo-feedback-sheet-id";
       }
 
       const res = await fetch("/api/google-form", {
@@ -926,7 +963,7 @@ export default function EventContainerPage() {
       : ["CSI Student Coordinators"];
 
   // RSMS Notice description (Standard format from approved template without brief description/impromptu)
-  const rsmsDescription = `The Computer Society of India Student Branch is conducting ${event.mode === "Online" ? "an online competition" : "a technical event"}, ${event.event_name}, for students of all years.`;
+  const rsmsDescription = `The Technical Student Society is conducting ${event.mode === "Online" ? "an online competition" : "a technical event"}, ${event.event_name}, for students of all years.`;
 
   return (
     <div className="space-y-8 max-w-6xl mx-auto pb-12">
@@ -1234,7 +1271,7 @@ export default function EventContainerPage() {
                 <p>To</p>
                 <p>The Principal,</p>
                 <p>College of Engineering &amp; Technology,</p>
-                <p>Kakkanad.</p>
+                <p>University Campus.</p>
               </div>
 
               <p className="font-bold pt-1 text-lg">
@@ -1244,11 +1281,11 @@ export default function EventContainerPage() {
               <p>Respected Sir,</p>
 
               <p className="text-justify">
-                The Computer Society of India (CSI) Student Branch is planning to organize a technical event titled <strong>{event.event_name}</strong>. {event.brief_description || "The event is designed to introduce participants to core Computer Science concepts and technical skills through interactive sessions and challenges."}
+                The Technical Student Society is planning to organize a technical event titled <strong>{event.event_name}</strong>. {event.brief_description || "The event is designed to introduce participants to core Computer Science concepts and technical skills through interactive sessions and challenges."}
               </p>
 
               <p className="text-justify">
-                The event is open to students from the <strong>{branchesString}</strong> departments and will be conducted in the <strong>{event.venue}</strong> using a software-based platform developed by the CSI Student Branch.
+                The event is open to students from the <strong>{branchesString}</strong> departments and will be conducted in the <strong>{event.venue}</strong> using a software-based platform developed by the Technical Student Society.
               </p>
 
               <p>We kindly request your permission to conduct this event as per the details given below:</p>
@@ -1266,7 +1303,7 @@ export default function EventContainerPage() {
                 <p>Yours faithfully,</p>
                 <p className="font-bold pt-2">{facultyCoordinator}</p>
                 <p>Faculty Coordinator</p>
-                <p>CSI Student Branch</p>
+                <p>Technical Student Society</p>
               </div>
             </div>
           </div>
@@ -1339,15 +1376,15 @@ export default function EventContainerPage() {
                 <div className="p-4 rounded-xl bg-purple-950/40 border border-purple-500/40 space-y-3 mb-3 text-[15px]">
                   <span className="font-bold text-white block">Connected CSI Drive Assets:</span>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-                    <a
-                      href={event.google_form_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-3 rounded-lg bg-black/60 hover:bg-black border border-purple-500/30 text-cyan-300 hover:text-cyan-200 flex items-center gap-2 transition font-semibold"
+                    <button
+                      type="button"
+                      onClick={() => setIsSimulatedFormOpen(true)}
+                      className="p-3 rounded-lg bg-gradient-to-r from-purple-700 to-indigo-700 hover:from-purple-600 hover:to-indigo-600 border border-purple-400/50 text-white flex items-center gap-2 transition font-bold shadow-md text-left"
+                      title="Open interactive simulated Google Form"
                     >
-                      <ExternalLink className="w-4 h-4 text-cyan-400" />
-                      <span className="truncate">Live Student Form</span>
-                    </a>
+                      <ExternalLink className="w-4 h-4 text-amber-300 shrink-0" />
+                      <span className="truncate">Open Form Simulation</span>
+                    </button>
                     {event.google_form_edit_url && (
                       <a
                         href={event.google_form_edit_url}
@@ -1484,6 +1521,17 @@ export default function EventContainerPage() {
                   </button>
                 ) : (
                   <>
+                    {/* Interactive Form Simulator Button */}
+                    <button
+                      type="button"
+                      onClick={() => setIsSimulatedFormOpen(true)}
+                      className="px-4 py-2.5 rounded-xl bg-purple-700/80 hover:bg-purple-600 text-white text-[15px] font-bold flex items-center gap-2 transition border border-purple-400/40 shadow"
+                      title="Open interactive simulated form to submit sample students"
+                    >
+                      <Sparkles className="w-4 h-4 text-amber-300" />
+                      <span>Submit Test Student</span>
+                    </button>
+
                     {/* Sync Final Roster after Form Closes */}
                     <button
                       onClick={handleSyncFinalRosterFromDrive}
@@ -1590,15 +1638,15 @@ export default function EventContainerPage() {
                 <div className="p-4 rounded-xl bg-purple-950/40 border border-purple-500/40 space-y-3 mb-3 text-[15px]">
                   <span className="font-bold text-white block">Connected CSI Drive Feedback Assets:</span>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-                    <a
-                      href={event.feedback_google_form_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-3 rounded-lg bg-black/60 hover:bg-black border border-purple-500/30 text-cyan-300 hover:text-cyan-200 flex items-center gap-2 transition font-semibold"
+                    <button
+                      type="button"
+                      onClick={() => setIsSimulatedFeedbackOpen(true)}
+                      className="p-3 rounded-lg bg-gradient-to-r from-emerald-700 to-teal-700 hover:from-emerald-600 hover:to-teal-600 border border-emerald-400/50 text-white flex items-center gap-2 transition font-bold shadow-md text-left"
+                      title="Open interactive simulated Feedback Form"
                     >
-                      <ExternalLink className="w-4 h-4 text-cyan-400" />
-                      <span className="truncate">Live Feedback Form</span>
-                    </a>
+                      <ExternalLink className="w-4 h-4 text-amber-300 shrink-0" />
+                      <span className="truncate">Open Feedback Simulation</span>
+                    </button>
                     {event.feedback_google_form_edit_url && (
                       <a
                         href={event.feedback_google_form_edit_url}
@@ -1821,6 +1869,17 @@ export default function EventContainerPage() {
                   </button>
                 ) : (
                   <>
+                    {/* Interactive Feedback Simulator Button */}
+                    <button
+                      type="button"
+                      onClick={() => setIsSimulatedFeedbackOpen(true)}
+                      className="px-4 py-2.5 rounded-xl bg-emerald-700/80 hover:bg-emerald-600 text-white text-[15px] font-bold flex items-center gap-2 transition border border-emerald-400/40 shadow"
+                      title="Open interactive simulated form to submit sample feedback"
+                    >
+                      <Sparkles className="w-4 h-4 text-amber-300" />
+                      <span>Submit Test Feedback</span>
+                    </button>
+
                     {/* Sync Feedback Responses to Certificates */}
                     <button
                       onClick={handleSyncFeedbackFromDrive}
@@ -2471,6 +2530,26 @@ export default function EventContainerPage() {
             </div>
           </div>
         </div>
+      )}
+
+      {/* Interactive Form Simulator Modals (Registration & Feedback) */}
+      {event && (
+        <>
+          <SimulatedFormModal
+            isOpen={isSimulatedFormOpen}
+            onClose={() => setIsSimulatedFormOpen(false)}
+            event={event}
+            mode="registration"
+            onRegisteredSuccess={handleSimulatedRegistered}
+          />
+          <SimulatedFormModal
+            isOpen={isSimulatedFeedbackOpen}
+            onClose={() => setIsSimulatedFeedbackOpen(false)}
+            event={event}
+            mode="feedback"
+            onFeedbackSuccess={handleSimulatedFeedback}
+          />
+        </>
       )}
     </div>
   );

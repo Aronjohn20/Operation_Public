@@ -525,7 +525,7 @@ export function exportPermissionPdf(
   doc.text("To", margin, y); y += 5.5;
   doc.text("The Principal,", margin, y); y += 5.5;
   doc.text("College of Engineering & Technology,", margin, y); y += 5.5;
-  doc.text("Kakkanad.", margin, y); y += 10;
+  doc.text("University Campus.", margin, y); y += 10;
 
   // Subject
   doc.setFont("times", "bold");
@@ -539,13 +539,13 @@ export function exportPermissionPdf(
   y += 7;
 
   // Body Paragraph 1
-  const p1Text = `The Computer Society of India (CSI) Student Branch is planning to organize a technical event titled ${eventName}. ${briefDescription || "The event is designed to introduce participants to core Computer Science concepts such as problem solving, logic, and analytical thinking through interactive challenges."}`;
+  const p1Text = `The Technical Student Society is planning to organize a technical event titled ${eventName}. ${briefDescription || "The event is designed to introduce participants to core Computer Science concepts such as problem solving, logic, and analytical thinking through interactive challenges."}`;
   const p1Lines = doc.splitTextToSize(p1Text, contentWidth);
   doc.text(p1Lines, margin, y);
   y += p1Lines.length * 5.2 + 5;
 
   // Body Paragraph 2 (Departments & Venue)
-  const p2Text = `The event is open to students from the ${targetBranchesString} departments and will be conducted in the ${venue} using a software-based platform developed by the CSI Student Branch.`;
+  const p2Text = `The event is open to students from the ${targetBranchesString} departments and will be conducted in the ${venue} using a software-based platform developed by the Technical Student Society.`;
   const p2Lines = doc.splitTextToSize(p2Text, contentWidth);
   doc.text(p2Lines, margin, y);
   y += p2Lines.length * 5.2 + 5;
@@ -576,7 +576,7 @@ export function exportPermissionPdf(
   doc.text(facultyCoordinator, margin, y); y += 5.2;
   doc.setFont("times", "normal");
   doc.text("Faculty Coordinator", margin, y); y += 5.2;
-  doc.text("CSI Student Branch", margin, y);
+  doc.text("Technical Student Society", margin, y);
 
   doc.save(`${filename.replace(/[^a-zA-Z0-9_-]/g, "_")}.pdf`);
 }
@@ -595,18 +595,18 @@ export function exportPermissionWord(
     <p style="margin: 0 0 3pt 0;">To</p>
     <p style="margin: 0 0 3pt 0;">The Principal,</p>
     <p style="margin: 0 0 3pt 0;">College of Engineering & Technology,</p>
-    <p style="margin: 0 0 14pt 0;">Kakkanad.</p>
+    <p style="margin: 0 0 14pt 0;">University Campus.</p>
 
     <p style="margin: 0 0 12pt 0;"><strong>Subject: Request for Conducting Technical Event "${eventName}"</strong></p>
 
     <p style="margin: 0 0 10pt 0;">Respected Sir,</p>
 
     <p style="margin: 0 0 12pt 0; text-align: justify;">
-      The Computer Society of India (CSI) Student Branch is planning to organize a technical event titled <strong>${eventName}</strong>. ${briefDescription || "The event is designed to introduce participants to core Computer Science concepts such as problem solving, logic, and analytical thinking through interactive challenges."}
+      The Technical Student Society is planning to organize a technical event titled <strong>${eventName}</strong>. ${briefDescription || "The event is designed to introduce participants to core Computer Science concepts such as problem solving, logic, and analytical thinking through interactive challenges."}
     </p>
 
     <p style="margin: 0 0 12pt 0; text-align: justify;">
-      The event is open to students from the <strong>${targetBranchesString}</strong> departments and will be conducted in the <strong>${venue}</strong> using a software-based platform developed by the CSI Student Branch.
+      The event is open to students from the <strong>${targetBranchesString}</strong> departments and will be conducted in the <strong>${venue}</strong> using a software-based platform developed by the Technical Student Society.
     </p>
 
     <p style="margin: 0 0 8pt 0;">We kindly request your permission to conduct this event as per the details given below:</p>
@@ -622,7 +622,7 @@ export function exportPermissionWord(
 
     <p style="margin: 0 0 2pt 0;"><strong>${facultyCoordinator}</strong></p>
     <p style="margin: 0 0 2pt 0;">Faculty Coordinator</p>
-    <p style="margin: 0 0 0 0;">CSI Student Branch</p>
+    <p style="margin: 0 0 0 0;">Technical Student Society</p>
   `;
 
   exportToWord(filename, `Permission_Letter_${eventName}`, html);

@@ -4,8 +4,16 @@ import { CSIEvent, Member } from "./types";
 import { events as initialEvents, members as initialMembers } from "./data";
 import { supabase } from "./supabaseClient";
 
-export const EVENTS_STORAGE_KEY = "csi_operations_events";
-export const MEMBERS_STORAGE_KEY = "csi_operations_members";
+export const EVENTS_STORAGE_KEY = "ops_platform_events_v5";
+export const MEMBERS_STORAGE_KEY = "ops_platform_members_v5";
+
+// Auto-purge old legacy cache from earlier sessions so visitors and users see the clean sample data
+if (typeof window !== "undefined") {
+  try {
+    localStorage.removeItem("csi_operations_events");
+    localStorage.removeItem("csi_operations_members");
+  } catch {}
+}
 
 let lastEventsSyncTime = 0;
 let lastMembersSyncTime = 0;

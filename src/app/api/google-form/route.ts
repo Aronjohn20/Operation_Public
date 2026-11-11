@@ -55,10 +55,10 @@ export async function POST(req: Request) {
     }
 
     // 4. Fetch Sheet Responses Simulation
-    if (action === "get_responses") {
+    if (action === "get_responses" || action === "get_feedback_responses") {
       // Return realistic student rows for demonstration
       const sheetId = String(payload.sheetId || "");
-      const isFeedback = sheetId.includes("feed") || sheetId.includes("feedback");
+      const isFeedback = action === "get_feedback_responses" || sheetId.includes("feed") || sheetId.includes("feedback");
 
       if (isFeedback) {
         return NextResponse.json({
