@@ -80,7 +80,7 @@ export default function Navbar() {
 
       {/* Footer */}
       <div className="px-5 py-3 border-t border-csi-border">
-        <p className="text-xs text-csi-textDim font-mono">CSI Operations v1.2</p>
+        <p className="text-xs text-csi-textDim font-mono">Operations v1.2</p>
       </div>
     </aside>
   );

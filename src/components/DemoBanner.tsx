@@ -43,12 +43,12 @@ export default function DemoBanner() {
           </div>
           <div>
             <div className="flex items-center gap-2 flex-wrap">
-              <span className="text-sm font-extrabold tracking-wide text-white">
+              {/* <span className="text-sm font-extrabold tracking-wide text-white">
                 Interactive Public Sandbox Mode
-              </span>
+              </span> */}
               <span className="text-[11px] px-2 py-0.5 rounded-full font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 flex items-center gap-1">
                 <ShieldCheck className="w-3 h-3" />
-                <span>100% Client-Side Air-Gapped</span>
+                {/* <span>100% Client-Side Air-Gapped</span> */}
               </span>
             </div>
             <p className="text-xs text-slate-400 mt-0.5">

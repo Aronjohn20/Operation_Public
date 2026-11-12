@@ -77,7 +77,6 @@ export default function Home() {
       <div className="flex items-center justify-between border-b border-csi-border pb-6">
         <div>
           <h1 className="text-3xl font-extrabold text-white tracking-tight">Overview Dashboard</h1>
-          <p className="text-slate-300 text-lg mt-1">High-level executive overview of CSI chapter operations</p>
         </div>
       </div>
 
@@ -108,7 +107,7 @@ export default function Home() {
         <div className="px-7 py-5 border-b-2 border-purple-500/30 flex items-center justify-between bg-[#0B0912]">
           <div>
             <h2 className="text-xl font-extrabold text-white">Recent Events Activity</h2>
-            <p className="text-sm text-slate-400">Summary of latest CSI events and assigned coordinators</p>
+            <p className="text-sm text-slate-400">Summary of latest events and assigned coordinators</p>
           </div>
           <Link
             href="/events"
@@ -208,7 +207,7 @@ export default function Home() {
             Members Database &amp; Workload
           </h2>
           <p className="text-[19px] text-slate-300 mt-1.5 leading-relaxed">
-            Manage 23 members, track availability, and inspect coordination counts.
+            Manage members, track availability, and inspect coordination counts.
           </p>
         </Link>
       </div>
