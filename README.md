@@ -113,6 +113,10 @@ This project is built to be easily adapted to any college club or student organi
 
 ## ☁️ Google Workspace Automation (Optional Setup)
 
+> [!IMPORTANT]
+> **Why "Edit in Forms" is simulated in Sandbox / Demo Mode**:  
+> In the demo/sandbox mode, registration and feedback forms run completely inside your browser via local simulation. Because a real form has not been provisioned inside your Google Drive yet, external Google actions like **"Edit in Forms"** or direct Drive links cannot be edited online. To create and manage real, live Google Forms and linked Sheets inside your chapter's Google Drive, deploy the Google Apps Script provided in the [`scripts/`](scripts/) folder as explained below.
+
 In addition to the in-app interactive simulation, this project includes production-ready **Google Apps Script** automation scripts in the [`scripts/`](scripts/) folder.
 
 ### What the Scripts Do:
