@@ -1079,7 +1079,7 @@ export default function CertificateStudioPage() {
             )}
             <div className="text-left">
               <div className="text-lg font-extrabold">
-                {isExportingWinnersZip ? "Generating Winners PDF" : "Download Winners Folder (PDF)"}
+                {isExportingWinnersZip ? "Generating Winners PPTX" : "Download Winners Folder (PPTX)"}
               </div>
               <div className="text-xs text-amber-100 font-normal">
                 {isExportingWinnersZip
@@ -1105,7 +1105,7 @@ export default function CertificateStudioPage() {
             )}
             <div className="text-left">
               <div className="text-lg font-extrabold">
-                {isExportingParticipationZip ? "Generating Participation PDF..." : "Download Participation Folder (PDF)"}
+                {isExportingParticipationZip ? "Generating Participation PPTX..." : "Download Participation Folder (PPTX)"}
               </div>
               <div className="text-xs text-cyan-100 font-normal">
                 {isExportingParticipationZip
