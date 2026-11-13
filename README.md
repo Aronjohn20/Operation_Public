@@ -57,6 +57,75 @@ Self-contained registration and feedback simulators with live attendance sync, Q
 
 ---
 
+## 🛠️ Complete Feature Walkthrough: What Every Tool & Button Does
+
+To prevent any confusion when exploring the platform, here is a non-technical guide explaining what each feature does, what the buttons mean, and how a student coordinator uses them:
+
+### 1. Operations Overview Dashboard (`/`)
+* **What it does**: The executive control room. Shows active vs. completed event counts and coordinator workload distribution at a glance.
+* **Key Buttons**:
+  * **`Container →`**: Opens that specific event's complete 5-phase operations workspace.
+  * **`Go to Events Manager →`**: Takes you to the full searchable events directory.
+
+---
+
+### 2. Events Hub & Creation (`/events`)
+* **What it does**: Keeps an organized archive of all past, present, and upcoming chapter initiatives.
+* **Key Buttons**:
+  * **`+ Create New Event`**: Opens a setup wizard to configure the event title, mode (Offline/Online), date, venue, and participating departments. It automatically highlights senior mentors vs. junior coordinators to keep workloads fair.
+  * **Status Tabs (`All Events` / `Active & Planned` / `Completed Archive`)**: Filter between events currently in progress and concluded events.
+  * **`Manage Container`**: Jumps directly into that event's setup workspace.
+  * **`Certificates`**: Opens the Certificate Studio directly for that event.
+
+---
+
+### 3. Event Workspace (`/events/[id]`): The 5 Operational Phases
+Each event has its own dedicated workspace guiding you step-by-step through the event lifecycle:
+
+#### Phase 1: Event Details & Coordinator Workload
+* View and edit venue, target branches, and assign or swap coordinators anytime.
+
+#### Phase 2: Formal Permission & Notices (Administrative Clearance)
+* **`Download Letter (.docx)` / `Download Letter (PDF)`**: Generates the formal approval request letter for the Principal / Head of Institution with college logos, faculty coordinator sign-off lines, and event details already formatted.
+* **`Copy Intranet Notice`**: Generates a clean text notice ready to paste into campus intranet portals, bulletin boards, or student WhatsApp groups.
+
+#### Phase 3: Registration Form & Attendee Pipeline
+* **`Open Form Simulation`**: Test the registration form inside your browser just like a student would—no Google account setup needed.
+* **`Submit Test Student`**: Instantly inserts a realistic student registration for rapid testing.
+* **`Sync Final Roster to Attendance`**: When registration ends, click this to freeze the applicant list and transfer them into the event-day attendance roll.
+* **`Close Registration`**: Locks the form to prevent further student submissions.
+* **`Copy Public Link`**: Copies the registration link to share with students.
+
+#### Phase 4: Event-Day Live Attendance
+* **Attendee Check-In Toggles**: Mark students as present or absent live during the event.
+* **`Download Attendance Sign-In Sheet (Word / PDF)`**: Exports a physical sign-in sheet with student roll numbers, departments, and signature columns for faculty verification.
+* **`Sync Attendance to Feedback`**: Sends only verified attendees to the feedback stage so certificates are issued only to genuine participants.
+
+#### Phase 5: Feedback Survey & Outcome Mapping
+* **QR Code Display**: Show this on the auditorium projector screen for students to scan on their phones before leaving.
+* **`Open Feedback Simulation`**: Test the feedback survey where attendees rate event outcomes (PO10/11) and verify their certificate name spelling.
+* **`Submit Test Feedback`**: Loads sample attendee feedback records for testing.
+* **`Certificate Studio →`**: Takes you straight into certificate generation with all verified attendee names ready.
+
+---
+
+### 4. Certificate Studio (`/events/[id]/certificates`)
+* **What it does**: Generates personalized certificates in batch ZIP folders, completely eliminating manual copy-pasting and name typos.
+* **Key Buttons**:
+  * **Select Winners**: Multi-select 1st, 2nd, and 3rd place awardees from the dropdown list of verified attendees.
+  * **Upload Template**: Upload your club's PowerPoint (`.pptx`) or image template. The system dynamically replaces `<<name>>` and `<<position>>` tags.
+  * **Visual Position Sliders**: Move name fields, change font sizes, and adjust text colors on a live canvas preview.
+  * **`Download Winners Folder`**: Generates a ZIP file containing personalized certificates for 1st, 2nd, and 3rd place winners.
+  * **`Download Participation Folder`**: Generates a separate ZIP file containing personalized certificates for all participants.
+
+---
+
+### 5. Members Directory & Workload Tracker (`/members`)
+* **What it does**: A directory of all student members, categorized by executive domain (Technical, Operations, Creative, Marketing).
+* **Workload Counter**: Displays exactly how many events each member has coordinated, helping leadership distribute responsibilities evenly and prevent coordinator burnout.
+
+---
+
 ## 🚀 Quick Start: Try the App
 
 ### Option A: Test the Live Interactive Demo (Instant in Browser)
