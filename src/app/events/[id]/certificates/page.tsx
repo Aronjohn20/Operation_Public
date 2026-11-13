@@ -726,7 +726,7 @@ export default function CertificateStudioPage() {
 
       setStatusNotice({
         type: "success",
-        text: `Downloaded ${count} winner certificate(s) & saved to Supabase Storage! All associates can now access them.`,
+        text: `Successfully generated and downloaded ${count} winner certificate(s) in ZIP archive!`,
       });
     } catch (err: any) {
       setStatusNotice({
@@ -820,7 +820,7 @@ export default function CertificateStudioPage() {
 
       setStatusNotice({
         type: "success",
-        text: `Downloaded ${count} participation certificate(s) & saved to Supabase Storage! All associates can now access them.`,
+        text: `Successfully generated and downloaded ${count} participation certificate(s) in ZIP archive!`,
       });
     } catch (err: any) {
       setStatusNotice({
@@ -940,7 +940,7 @@ export default function CertificateStudioPage() {
 
       setStatusNotice({
         type: "success",
-        text: `Compiled and saved all certificates directly to Supabase Storage! All associates can now download them from any device.`,
+        text: `Successfully compiled and saved all certificates for this event!`,
       });
     } catch (err: any) {
       setStatusNotice({
@@ -1105,7 +1105,7 @@ export default function CertificateStudioPage() {
             )}
             <div className="text-left">
               <div className="text-lg font-extrabold">
-                {isExportingParticipationZip ? "Generating Participation PDF..." : "Download Participation Folder (PPTX)"}
+                {isExportingParticipationZip ? "Generating Participation PDF..." : "Download Participation Folder (PDF)"}
               </div>
               <div className="text-xs text-cyan-100 font-normal">
                 {isExportingParticipationZip

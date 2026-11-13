@@ -102,12 +102,20 @@ This project is built to be easily adapted to any college club or student organi
 * **Departments & Branches**: Change the target academic branches (e.g., `CSE`, `ECE`, `IT`, `ME`, `AIDS`) in [`src/lib/types.ts`](src/lib/types.ts) and [`src/lib/formScriptGenerator.ts`](src/lib/formScriptGenerator.ts).
 * **Club Logos & Branding**: Replace sample emblems in `public/logos/` with your own chapter's high-resolution emblems, or edit [`src/lib/logosBase64.ts`](src/lib/logosBase64.ts).
 
-### 2. Customizing Certificates (Upload PPTX or Edit Code)
-* **Visual In-App Customization**: Open **Certificate Studio** (`/events/[id]/certificates`) and upload your own **PowerPoint template (`.pptx`)** or background image. Use the interactive sliders and canvas to visually align names, dates, and signature lines.
-* **Code-Level Customization**: If you prefer custom layout logic or default typography, modify [`src/lib/certificateExport.ts`](src/lib/certificateExport.ts). The engine includes:
-  * Automatic **superscript ordinals** ($1^{st}$, $2^{nd}$, $3^{rd}$) for merit awards.
-  * Multi-font paragraph wrapping.
-  * Automated batch generation into `Winners_Appreciation_Certificates/` and `Participation_Certificates/` folders via JSZip.
+### 2. Customizing Certificates (PowerPoint Engine & Future Scope)
+
+Certificates can be fully personalized to match your club's design aesthetic. The certificate system lives in two core files:
+* **UI & Studio Controls**: [`src/app/events/[id]/certificates/page.tsx`](src/app/events/[id]/certificates/page.tsx) — Handles template uploads, winner selections (1st, 2nd, 3rd place), live canvas previews, and folder download triggers.
+* **Batch Export Engine**: [`src/lib/certificateExport.ts`](src/lib/certificateExport.ts) — Parses PowerPoint XML, replaces dynamic placeholders (`<<name>>`, `<<position>>`), and packages dual-folder ZIP archives via JSZip.
+
+#### How It Works:
+* **Native PowerPoint (`.pptx`) Generation**: Upload your organization's custom `.pptx` template. The platform dynamically swaps attendee names and merit rankings while preserving 100% of your PowerPoint fonts, vector shapes, gradients, and logos.
+* **Automatic Merit Ordinals**: Renders true superscript ordinals ($1^{st}$, $2^{nd}$, $3^{rd}$) for winners and formats participant names automatically.
+* **Organized Dual-Folder ZIPs**: Generates separate archives for `Winners_Appreciation_Certificates/` and `Participation_Certificates/`.
+
+> [!TIP]
+> **🚀 Future Scope — Direct Cloud PDF Conversion**:  
+> Currently, the platform exports high-fidelity `.pptx` presentations so chapter leads have fully editable master slides. A planned future enhancement is an automated serverless conversion pipeline (via headless LibreOffice / Chromium) to seamlessly compile `.pptx` templates into distribution-ready vector `.pdf` files directly within the web app.
 
 ---
 
