@@ -153,7 +153,7 @@ export function generateDefaultFeedbackQuestions(event: CSIEvent): FeedbackQuest
       {
         id: "q7",
         title: "Do you have any other comments/suggestions that would help us make future events better?",
-        description: "Please share any feedback or ideas for upcoming CSI events.",
+        description: "Please share any feedback or ideas for upcoming Club events.",
         po_mapping: [],
         choices: [],
         type: "paragraph",
@@ -221,7 +221,7 @@ export function generateDefaultFeedbackQuestions(event: CSIEvent): FeedbackQuest
       {
         id: "q7",
         title: "Do you have any other comments/suggestions that would help us make future events better?",
-        description: "Please share any feedback or ideas for upcoming CSI events.",
+        description: "Please share any feedback or ideas for upcoming Club events.",
         po_mapping: [],
         choices: [],
         type: "paragraph",
@@ -289,7 +289,7 @@ export function generateDefaultFeedbackQuestions(event: CSIEvent): FeedbackQuest
       {
         id: "q7",
         title: "Do you have any other comments/suggestions that would help us make future events better?",
-        description: "Please share any feedback or ideas for upcoming CSI events.",
+        description: "Please share any feedback or ideas for upcoming Club events.",
         po_mapping: [],
         choices: [],
         type: "paragraph",
@@ -357,7 +357,7 @@ export function generateDefaultFeedbackQuestions(event: CSIEvent): FeedbackQuest
     {
       id: "q7",
       title: "Do you have any other comments/suggestions that would help us make future events better?",
-      description: "Please share any feedback or ideas for upcoming CSI events.",
+      description: "Please share any feedback or ideas for upcoming Club events.",
       po_mapping: [],
       choices: [],
       type: "paragraph",
@@ -370,7 +370,7 @@ export function generateDefaultFeedbackQuestions(event: CSIEvent): FeedbackQuest
  * Builds the official form header description based on event aims
  */
 export function getFeedbackHeaderDescription(event: CSIEvent): string {
-  const intro = `Please take a moment to share your valuable feedback and ratings for ${event.event_name}, organized by the Computer Society of India (CSI) Student Branch.`;
+  const intro = `Please take a moment to share your valuable feedback and ratings for ${event.event_name}, organized by the {Club Name}.`;
 
   return `${intro}\nThank you for participating – your feedback will help us improve and deliver even better events ahead!`;
 }

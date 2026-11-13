@@ -99,19 +99,19 @@ function ${cleanFuncName}() {
     .setChoiceValues(["Alpha", "Beta", "Gamma", "Delta", "Nil"])
     .setRequired(true);
 
-  // Q8: Are you a CSI member? * (Multiple Choice: Yes, No)
+  // Q8: Are you a Club member? * (Multiple Choice: Yes, No)
   form.addMultipleChoiceItem()
-    .setTitle("Are you a CSI member?")
+    .setTitle("Are you a Club member?")
     .setChoiceValues(["Yes", "No"])
     .setRequired(true);
 
-  // Q9: If yes, enter CSI membership id (Optional)
+  // Q9: If yes, enter Club membership id (Optional)
   form.addTextItem()
-    .setTitle("If yes, enter CSI membership id")
+    .setTitle("If yes, enter Club membership id")
     .setHelpText("Your membership ID can be found in your membership card")
     .setRequired(false);
 
-  // 2. Create the Destination Google Sheet in CSI Google Drive
+  // 2. Create the Destination Google Sheet in Club Google Drive
   const sheetTitle = "${event.event_name} - Registrations (Responses)";
   const spreadsheet = SpreadsheetApp.create(sheetTitle);
 

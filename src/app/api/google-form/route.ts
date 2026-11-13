@@ -102,8 +102,8 @@ export async function POST(req: Request) {
           "Current Year of Study",
           "Department / Branch",
           "Class Section / Division",
-          "Are you an active CSI Member?",
-          "CSI Membership Number (if applicable)",
+          "Are you an active Club Member?",
+          "Club Membership Number (if applicable)",
         ],
         rows: [
           ["2026-09-20 10:12:00", "Mr", "Aarav Sharma", "aarav.s@example.com", "9847000001", "3rd year", "CSE", "Alpha", "Yes", "CSI-MEM-101"],

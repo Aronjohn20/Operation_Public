@@ -171,7 +171,7 @@ export function exportAttendancePdf(
   doc.text(`: ${venue}`, col2X, metaY + 12);
 
   doc.text("COORDINATORS", col1X, metaY + 18);
-  doc.text(`: ${coordinators.join(", ") || "CSI Coordinators"}`, col2X, metaY + 18);
+  doc.text(`: ${coordinators.join(", ") || "Club Coordinators"}`, col2X, metaY + 18);
 
   const participantCountText = attendees && attendees.length > 0 ? String(attendees.length) : "__________________";
   doc.text("No. of participants", col1X, metaY + 24);
@@ -322,7 +322,7 @@ export function exportAttendanceWord(
       </tr>
       <tr style="border: none;">
         <td style="width: 220px; border: none; font-weight: bold; padding: 1.5pt 0; font-size: 13pt; line-height: 1.15; mso-line-height-rule: exactly; font-family: Calibri, sans-serif;">COORDINATORS</td>
-        <td style="border: none; font-weight: bold; padding: 1.5pt 0; font-size: 13pt; line-height: 1.15; mso-line-height-rule: exactly; font-family: Calibri, sans-serif;">: ${coordinators.join(", ") || "CSI Coordinators"}</td>
+        <td style="border: none; font-weight: bold; padding: 1.5pt 0; font-size: 13pt; line-height: 1.15; mso-line-height-rule: exactly; font-family: Calibri, sans-serif;">: ${coordinators.join(", ") || "Club Coordinators"}</td>
       </tr>
       <tr style="border: none;">
         <td style="width: 220px; border: none; font-weight: bold; padding: 1.5pt 0; font-size: 13pt; line-height: 1.15; mso-line-height-rule: exactly; font-family: Calibri, sans-serif;">No. of participants</td>

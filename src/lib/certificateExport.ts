@@ -340,8 +340,8 @@ export function replaceWriteupInSlideXml(
   const isWinner = position === "1st" || position === "2nd" || position === "3rd";
   const posText = isWinner ? `${position} place` : "participant";
   const writeupSentence = isWinner
-    ? `has secured ${posText} in the ${mode} event titled ${eventName}, held on ${formattedDate}, organized by the Computer Society of India (CSI) Student Branch.`
-    : `has actively participated in the ${mode} event titled ${eventName}, held on ${formattedDate}, organized by the Computer Society of India (CSI) Student Branch.`
+    ? `has secured ${posText} in the ${mode} event titled ${eventName}, held on ${formattedDate}, organized by the {Club Name}.`
+    : `has actively participated in the ${mode} event titled ${eventName}, held on ${formattedDate}, organized by the {Club Name}.`
 
   xml = xml.replace(
     /(<<writeup>>|&lt;&lt;writeup&gt;&gt;|\{\{writeup\}\}|\{writeup\}|\[writeup\])/gi,
@@ -866,7 +866,7 @@ export function renderCertificatePage(
   const dateFormatted = formatFullDateWithDay(info.eventDate);
   const venueStr = info.venue ? ` at ${info.venue}` : "";
   doc.text(
-    `organized by the Computer Society of India (CSI) Student Branch on ${dateFormatted}${venueStr}.`,
+    `organized by the {Club Name} on ${dateFormatted}${venueStr}.`,
     pageWidth / 2,
     textStartY,
     { align: "center" }
@@ -883,7 +883,7 @@ export function renderCertificatePage(
   doc.text(counselor, margin + 40, sigY, { align: "center" });
   doc.setFont("times", "normal");
   doc.setFontSize(9.5);
-  doc.text("Branch Counselor, CSI Student Branch", margin + 40, sigY + 4.5, { align: "center" });
+  doc.text("Branch Counselor, {Club Name}", margin + 40, sigY + 4.5, { align: "center" });
   doc.setDrawColor(180, 180, 180);
   doc.setLineWidth(0.4);
   doc.line(margin + 15, sigY - 2, margin + 65, sigY - 2);
@@ -896,7 +896,7 @@ export function renderCertificatePage(
   doc.text(faculty, pageWidth / 2, sigY, { align: "center" });
   doc.setFont("times", "normal");
   doc.setFontSize(9.5);
-  doc.text("Faculty Coordinator, CSI Student Branch", pageWidth / 2, sigY + 4.5, { align: "center" });
+  doc.text("Faculty Coordinator, {Club Name}", pageWidth / 2, sigY + 4.5, { align: "center" });
   doc.line(pageWidth / 2 - 25, sigY - 2, pageWidth / 2 + 25, sigY - 2);
 
   // Right Signature: Student Chair
@@ -906,7 +906,7 @@ export function renderCertificatePage(
   doc.text("Student Chair", pageWidth - margin - 40, sigY, { align: "center" });
   doc.setFont("times", "normal");
   doc.setFontSize(9.5);
-  doc.text("CSI Student Branch", pageWidth - margin - 40, sigY + 4.5, { align: "center" });
+  doc.text("{Club Name}", pageWidth - margin - 40, sigY + 4.5, { align: "center" });
   doc.line(pageWidth - margin - 65, sigY - 2, pageWidth - margin - 15, sigY - 2);
 }
 
@@ -1467,7 +1467,7 @@ export async function generateCoordinatorCertificateDataUrl(
   // Line 2: by Computer Society of India (CSI) Student Branch on [Date],
   renderMultiFontLine(474, [
     { text: "by ", bold: false },
-    { text: "Computer Society of India (CSI) Student Branch", bold: true },
+    { text: "{Club Name}", bold: true },
     { text: " on ", bold: false },
     { text: formattedDate, bold: false },
     { text: ",", bold: false },

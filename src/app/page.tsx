@@ -65,7 +65,7 @@ export default function Home() {
     {
       label: "PLATFORM STATUS",
       value: "Online",
-      sub: "CSI Chapter Active",
+      sub: "Club Chapter Active",
       borderColor: "border-t-pink-500",
       icon: Activity,
     },

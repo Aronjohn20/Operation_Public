@@ -159,7 +159,7 @@ export default function EventContainerPage() {
       updateEvent(updated);
       setDriveActionNotice({
         type: "success",
-        text: "Google Form & Responses Sheet created directly in your CSI Google Drive!",
+        text: "Google Form & Responses Sheet created directly in your Club Google Drive!",
       });
     } catch (err: any) {
       setDriveActionNotice({
@@ -498,7 +498,7 @@ export default function EventContainerPage() {
       updateEvent(updated);
       setFeedbackActionNotice({
         type: "success",
-        text: "Feedback Form & Responses Sheet created directly in your CSI Google Drive!",
+        text: "Feedback Form & Responses Sheet created directly in your Club Google Drive!",
       });
     } catch (err: any) {
       setFeedbackActionNotice({
@@ -960,7 +960,7 @@ export default function EventContainerPage() {
   const coordinatorListWithClass =
     event.assigned_coordinators.length > 0
       ? event.assigned_coordinators.map(getCoordinatorWithClass)
-      : ["CSI Student Coordinators"];
+      : ["Club Student Coordinators"];
 
   // RSMS Notice description (Standard format from approved template without brief description/impromptu)
   const rsmsDescription = `The Technical Student Society is conducting ${event.mode === "Online" ? "an online competition" : "a technical event"}, ${event.event_name}, for students of all years.`;
@@ -1328,7 +1328,7 @@ export default function EventContainerPage() {
                   {event.google_form_url && (
                     <span className="text-[14px] px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-300 font-bold border border-cyan-500/30 flex items-center gap-1.5">
                       <Check className="w-4 h-4 text-cyan-400" />
-                      Live in CSI Drive
+                      Live in Club Drive
                     </span>
                   )}
                   {event.is_registration_closed ? (
@@ -1374,7 +1374,7 @@ export default function EventContainerPage() {
               {/* Active Drive Links when Form is Created */}
               {event.google_form_url && (
                 <div className="p-4 rounded-xl bg-purple-950/40 border border-purple-500/40 space-y-3 mb-3 text-[15px]">
-                  <span className="font-bold text-white block">Connected CSI Drive Assets:</span>
+                  {/* <span className="font-bold text-white block">Connected CSI Drive Assets:</span> */}
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
                     <button
                       type="button"
@@ -1417,7 +1417,7 @@ export default function EventContainerPage() {
                   <div className="flex items-center justify-between pb-2.5 border-b border-purple-500/20">
                     <span className="font-bold text-slate-200 text-[17px]">Official Form Questions (10 Fields):</span>
                     <span className="text-[14px] px-3 py-1 rounded bg-amber-500/20 text-amber-300 font-mono font-semibold">
-                      All Required except CSI ID
+                      All Required except Club ID
                     </span>
                   </div>
 
@@ -1467,12 +1467,12 @@ export default function EventContainerPage() {
                     </div>
                     <div className="flex items-center gap-2">
                       <span className="text-amber-400 font-bold font-mono">9.</span>
-                      <span className="font-bold text-white">Are you a CSI member?</span>
+                      <span className="font-bold text-white">Are you a Club member?</span>
                       <span className="text-red-400 font-bold">*</span>
                     </div>
                     <div className="flex items-center gap-2 col-span-1 md:col-span-2">
                       <span className="text-slate-500 font-bold font-mono">10.</span>
-                      <span className="font-bold text-white">If yes, enter CSI membership id</span>
+                      <span className="font-bold text-white">If yes, enter Club membership id</span>
                       <span className="text-slate-400 text-[15px] font-normal">(Optional)</span>
                     </div>
                   </div>
@@ -1510,7 +1510,7 @@ export default function EventContainerPage() {
                     {isCreatingFormInDrive ? (
                       <>
                         <Loader2 className="w-5 h-5 animate-spin text-white" />
-                        <span>Creating Form in CSI Drive...</span>
+                        <span>Creating Form in Club Google Drive...</span>
                       </>
                     ) : (
                       <>
@@ -1636,7 +1636,7 @@ export default function EventContainerPage() {
               {/* Connected Drive Assets */}
               {event.feedback_google_form_url && (
                 <div className="p-4 rounded-xl bg-purple-950/40 border border-purple-500/40 space-y-3 mb-3 text-[15px]">
-                  <span className="font-bold text-white block">Connected CSI Drive Feedback Assets:</span>
+                  <span className="font-bold text-white block">Connected Club Drive Feedback Assets:</span>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
                     <button
                       type="button"
@@ -1858,7 +1858,7 @@ export default function EventContainerPage() {
                     {isCreatingFeedbackInDrive ? (
                       <>
                         <Loader2 className="w-5 h-5 animate-spin text-white" />
-                        <span>Creating Feedback Form in CSI Drive...</span>
+                        <span>Creating Feedback Form in Club Google Drive...</span>
                       </>
                     ) : (
                       <>
@@ -2100,7 +2100,7 @@ export default function EventContainerPage() {
               </div>
               <div className="flex items-start py-0.5">
                 <span className="w-52 font-bold shrink-0 text-[17px]">COORDINATORS</span>
-                <span className="font-bold text-[17px]">: {event.assigned_coordinators.join(", ") || "CSI Coordinators"}</span>
+                <span className="font-bold text-[17px]">: {event.assigned_coordinators.join(", ") || "Student Coordinators"}</span>
               </div>
               <div className="flex items-start py-0.5">
                 <span className="w-52 font-bold shrink-0 text-[17px]">No. of participants</span>
@@ -2163,10 +2163,10 @@ export default function EventContainerPage() {
             <div className="space-y-4 text-xs text-slate-300 overflow-y-auto pr-1">
               <div className="p-3 rounded-xl bg-purple-950/40 border border-purple-500/30 space-y-1.5">
                 <p className="font-bold text-purple-200 text-sm">
-                  Run directly inside your CSI Gmail Drive (script.google.com)
+                  Run directly inside your Club Gmail Drive (script.google.com)
                 </p>
                 <p className="text-slate-300 leading-relaxed">
-                  This custom script builds the exact 10-question registration form in your CSI Drive, injects only the eligible departments (<strong>{eventDepartments.join(", ")}</strong>), creates the responses Google Sheet, and automatically links them together!
+                  This custom script builds the exact 10-question registration form in your Club Google Drive, injects only the eligible departments (<strong>{eventDepartments.join(", ")}</strong>), creates the responses Google Sheet, and automatically links them together!
                 </p>
               </div>
 
@@ -2175,7 +2175,7 @@ export default function EventContainerPage() {
                 <p className="font-bold text-white uppercase tracking-wider text-[11px]">How to Run in 4 Steps:</p>
                 <ol className="list-decimal list-inside space-y-1 text-slate-300 leading-relaxed">
                   <li>
-                    Open Google Drive in your CSI Gmail account, then visit{" "}
+                    Open Google Drive in your Club Gmail account, then visit{" "}
                     <a
                       href="https://script.google.com"
                       target="_blank"
@@ -2272,7 +2272,7 @@ export default function EventContainerPage() {
 
             <div className="space-y-4 text-sm text-slate-300">
               <p className="leading-relaxed text-xs text-slate-400">
-                Paste your CSI Drive Google Sheet share link or paste copied table rows (from your CSI Gmail Drive).
+                Paste your Club Drive Google Sheet share link or paste copied table rows (from your CSI Gmail Drive).
                 The system maps <strong>Name</strong>, <strong>Gender</strong>, and <strong>Class</strong> into the Attendance Sheet.
               </p>
 
@@ -2358,7 +2358,7 @@ export default function EventContainerPage() {
             <div className="space-y-4 text-xs text-slate-300 overflow-y-auto pr-1">
               <div className="p-3 rounded-xl bg-pink-950/30 border border-pink-500/30 space-y-1.5">
                 <p className="font-bold text-pink-200 text-sm">
-                  Run directly in your CSI Gmail Drive (script.google.com)
+                  Run directly in your Club Gmail Drive (script.google.com)
                 </p>
                 <p className="text-slate-300 leading-relaxed">
                   This custom script builds the exact 2-section feedback form (Section 1: 8 participant fields for certificates, Section 2: CO/PO Likert questions), creates the linked responses Google Sheet, and sets up your automated certificate pipeline!
@@ -2370,7 +2370,7 @@ export default function EventContainerPage() {
                 <p className="font-bold text-white uppercase tracking-wider text-[11px]">How to Run in 4 Steps:</p>
                 <ol className="list-decimal list-inside space-y-1 text-slate-300 leading-relaxed">
                   <li>
-                    Open Google Drive in your CSI Gmail account, then visit{" "}
+                    Open Google Drive in your Club Gmail account, then visit{" "}
                     <a
                       href="https://script.google.com"
                       target="_blank"
